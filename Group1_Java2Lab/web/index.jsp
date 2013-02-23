@@ -12,6 +12,7 @@
   </head>
   <body>
   Let the project begin!
+  Added another line.
 
   </body>
 </html>
