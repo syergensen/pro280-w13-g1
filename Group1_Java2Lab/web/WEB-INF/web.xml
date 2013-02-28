@@ -4,5 +4,27 @@
            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
            version="2.5">
+    <context-param>
+        <param-name>StartPage</param-name>
+        <param-value>/start</param-value>
+    </context-param>
+    <context-param>
+        <param-name>LoginPage</param-name>
+        <param-value>loginPage.jsp</param-value>
+    </context-param>
 
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Login</web-resource-name>
+            <url-pattern>/login</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <description>SSL Enforcement</description>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <welcome-file-list>
+        <welcome-file>login</welcome-file>
+    </welcome-file-list>
 </web-app>
