@@ -21,6 +21,7 @@ Utilities...............${utilities}<br>
 Total Loans.............${totalloans}<br>
 In-School Savings.......${inschoolsavings}<br>
 <br>
+<br>
 Discretionary Income: ${discretionary}
 </body>
 </html>
