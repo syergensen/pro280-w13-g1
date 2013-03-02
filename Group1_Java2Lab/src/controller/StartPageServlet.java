@@ -23,10 +23,24 @@ public class StartPageServlet extends HttpServlet {
         // make sure the user reads the Terms of Service
         // if checkbox is not checked, they cannot proceed
         // else, they may continue to the next page
-        if(request.getParameter("checkbox") == null){
-            response.sendRedirect(getServletContext().getInitParameter("StartPage"));
-        } else {
+        if(request.getParameter("checkbox") != null){
             response.sendRedirect(getServletConfig().getInitParameter("SchoolPage"));
         }
+        else {
+//            response.sendRedirect("start");
+            request.getRequestDispatcher("start").forward(request, response);
+        }
     }
+
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        // make sure the user reads the Terms of Service
+//        // if checkbox is not checked, they cannot proceed
+//        // else, they may continue to the next page
+//        if(request.getParameter("checkbox") != null){
+//            response.sendRedirect(getServletConfig().getInitParameter("SchoolPage"));
+//        }
+////        else {
+////            response.sendRedirect("start");
+////        }
+//    }
 }
