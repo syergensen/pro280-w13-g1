@@ -18,6 +18,6 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // redirect the user to login with the NUID Authentication Service
-        response.sendRedirect("http://my.neumont.edu/nuid/service.aspx?ReturnUrl=https://localhost:8181/financeTool/start.jsp");
+        response.sendRedirect("http://my.neumont.edu/nuid/service.aspx?ReturnUrl=https://localhost:8181/financeTool/terms");
     }
 }
