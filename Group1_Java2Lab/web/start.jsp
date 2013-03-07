@@ -11,16 +11,13 @@
     <title>Financial Tool - Start</title>
 </head>
 <body>
-    <h1>Terms of Service</h1> <br>
+    <h1>Terms of Service</h1>
     <div>
-         <textarea rows="10" cols="50" readonly>
-            ${termsOfService.terms}
-         </textarea>      <br>
+        <textarea rows="20" cols="60" readonly>${termsOfService.terms}</textarea>  <br>
          <form method="post" action="start">
              <input type="checkbox" name="checkbox"> I have read the Terms of Service<br>
              <input type="submit" value="Begin">
          </form>
-     </div>
-
+    </div>
 </body>
 </html>

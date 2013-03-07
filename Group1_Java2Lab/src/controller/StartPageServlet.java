@@ -23,8 +23,8 @@ public class StartPageServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // make sure the user reads the Terms of Service
-        // if checkbox is not checked, they cannot proceed
-        // else, they may continue to the next page
+        // if checkbox is checked, they can proceed to the next page
+        // else, they may cannot continue
         if(request.getParameter("checkbox") != null){
             response.sendRedirect(getServletConfig().getInitParameter("SchoolPage"));
         }

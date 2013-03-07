@@ -19,6 +19,8 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // log the user out
+        request.logout();
         // make sure the session is not a new session
         HttpSession session = request.getSession(false);
         if(session != null){
