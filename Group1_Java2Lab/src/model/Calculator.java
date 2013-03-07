@@ -11,22 +11,22 @@ package model;
 public class Calculator {
 
     // adds a to b
-    public Integer add(int a, int b){
+    public Double add(double a, double b){
         return a + b;
     }
 
     // subtracts a from b
-    public Integer subtract(int a, int b){
+    public Double subtract(double a, double b){
         return a - b;
     }
 
     // multiplies a with b
-    public Integer multiply(int a, int b){
+    public Double multiply(double a, double b){
         return a * b;
     }
 
     // divides a by b
-    public Integer divide(int a, int b){
+    public Double divide(double a, double b){
         return a / b;
     }
 }
