@@ -9,13 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jrowley
- * Date: 3/1/13
- * Time: 7:17 PM
- * To change this template use File | Settings | File Templates.
- */
 @WebServlet(name = "ResultCalculator", urlPatterns = {"/result/calculate"},
         initParams =
                 {
@@ -26,8 +19,8 @@ public class ResultCalculator extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         HttpSession session = request.getSession();
-        String quarter = (String)session.getAttribute("quarter");
-        Integer year = Integer.parseInt((String)session.getAttribute("year"));
+        //String quarter = (String)session.getAttribute("quarter");
+        //Integer year = Integer.parseInt((String)session.getAttribute("year"));
         String degree = (String)session.getAttribute("degree");
         Double extraquarterfull = Double.parseDouble((String)session.getAttribute("extra-quarter-full"));
         Double extraquarterpart = Double.parseDouble((String)session.getAttribute("extra-quarter-part"));
