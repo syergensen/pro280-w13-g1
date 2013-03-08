@@ -19,6 +19,8 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // log the user out
+        request.logout();
         // make sure the session is not a new session
         HttpSession session = request.getSession(false);
         if(session != null){
@@ -26,6 +28,6 @@ public class LogoutServlet extends HttpServlet {
              session.invalidate();
        }
         // redirect the user back to the login page
-        response.sendRedirect(request.getContextPath() + "/" + getServletContext().getInitParameter("LoginPage"));
+        response.sendRedirect(request.getContextPath() + "/login");
     }
 }

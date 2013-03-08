@@ -16,17 +16,20 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 @WebServlet(urlPatterns = "/start", initParams = {
-@WebInitParam(name="SchoolPage", value="")
+@WebInitParam(name="SchoolPage", value=""),
+        @WebInitParam(name="Terms", value="terms")
 })
 public class StartPageServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // make sure the user reads the Terms of Service
-        // if checkbox is not checked, they cannot proceed
-        // else, they may continue to the next page
-        if(request.getParameter("checkbox") == null){
-            response.sendRedirect(getServletContext().getInitParameter("StartPage"));
-        } else {
+        // if checkbox is checked, they can proceed to the next page
+        // else, they may cannot continue
+        if(request.getParameter("checkbox") != null){
             response.sendRedirect(getServletConfig().getInitParameter("SchoolPage"));
+        }
+        else {
+            response.sendRedirect(getServletConfig().getInitParameter("Terms"));
         }
     }
 }
