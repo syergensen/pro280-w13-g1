@@ -12,6 +12,7 @@ Car Payment.............${carpayment}<br>
 Mortgage/Rent...........${mortgage}<br>
 Utilities...............${utilities}<br>
 Total Loans.............${totalloans}<br>
+Monthly Spending........${monthlyspending}<br>
 In-School Savings.......${inschoolsavings}<br>
 <br>
 <br>
