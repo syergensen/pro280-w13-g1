@@ -23,7 +23,7 @@ public class CarManager
         return carQuery.getResultList();
     }
 
-    public Car getCars(Integer id)
+    public Car getCar(Integer id)
     {
         return em.find(Car.class, id);
     }
@@ -42,6 +42,6 @@ public class CarManager
 
     public void delete(Integer id)
     {
-        em.remove(getCars(id));
+        em.remove(getCar(id));
     }
 }

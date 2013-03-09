@@ -1,5 +1,8 @@
 package controller;
 
+import manager.*;
+
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -16,11 +19,22 @@ import java.io.IOException;
                         @WebInitParam(name = "failure", value = "/aspirations.jsp")})
 public class ResultCalculator extends HttpServlet
 {
+    @EJB
+    CarManager carManager;
+    @EJB
+    DebtTypeManager debtTypeManager;
+    @EJB
+    DegreeManager degreeManager;
+    @EJB
+    HousingManager housingManager;
+    @EJB
+    MiscManager miscManager;
+    @EJB
+    RegionManager regionManager;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         HttpSession session = request.getSession();
-        //String quarter = (String)session.getAttribute("quarter");
-        //Integer year = Integer.parseInt((String)session.getAttribute("year"));
         String degree = (String)session.getAttribute("degree");
         Double extraquarterfull = Double.parseDouble((String)session.getAttribute("extra-quarter-full"));
         Double extraquarterpart = Double.parseDouble((String)session.getAttribute("extra-quarter-part"));
@@ -30,13 +44,25 @@ public class ResultCalculator extends HttpServlet
         Double debt3 = Double.parseDouble((String)session.getAttribute("debt3"));
 
         //calculates the result
-        Double income = 0.00;
+        Double income = degreeManager.findDegree(degree).getSalary() / 12;
         Double healthinsurance = 0.00;
         Double miscinsurance = 0.00;
-        Double carpayment = 0.00;
-        Double mortgage = 0.00;
-        Double utilities = 0.00;
-        Double totalloans = 0.00;
+
+        Double carcost = carManager.getCar(1).getPrice();
+        Double carintrest = carcost * .4;
+        Double carpayment = carcost + carintrest;
+        carpayment = carpayment / 48;
+
+        Double mortgage = housingManager.getHousing(1).getRent();
+        Double utilities = housingManager.getHousing(1).getUtilities();
+
+        Double inschoolhousing = housingManager.getHousing(1).getRent();
+        inschoolhousing += housingManager.getHousing(1).getUtilities();
+
+        //quarter is 10 weeks
+        Double totalloans = degreeManager.findDegree(degree).getDuration() * 7200.0 / 12;
+        totalloans += degreeManager.findDegree(degree).getDuration() * inschoolhousing;
+
         Double inschoolsavings = 0.00;
         Double discretionary = 0.00;
 

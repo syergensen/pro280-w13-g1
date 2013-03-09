@@ -23,7 +23,7 @@ public class DebtTypeManager
         return debtTypeQuery.getResultList();
     }
 
-    public DebtType getDebtTypes(Integer id)
+    public DebtType getDebtType(Integer id)
     {
         return em.find(DebtType.class, id);
     }
@@ -42,6 +42,6 @@ public class DebtTypeManager
 
     public void delete(Integer id)
     {
-        em.remove(getDebtTypes(id));
+        em.remove(getDebtType(id));
     }
 }
