@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 import javax.persistence.*;
 
@@ -9,17 +9,21 @@ import javax.persistence.*;
  * Time: 11:52 AM
  * To change this template use File | Settings | File Templates.
  */
-@Table(name = "Quarter")
+
+@Table(name = "quarter")
 @Entity
-@NamedQuery(name = "controller.Quarter.getAll", query = "SELECT p FROM Quarter p")
 public class Quarter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "name", nullable = false, length = 20)
+    @Column(name = "name", nullable = false, length = 40)
     private String name;
 
     public String getName(){
+        return name;
+    }
+
+    public String toString(){
         return name;
     }
 }

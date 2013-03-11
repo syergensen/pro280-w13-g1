@@ -1,4 +1,4 @@
-import controller.Quarter;
+import model.Quarter;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

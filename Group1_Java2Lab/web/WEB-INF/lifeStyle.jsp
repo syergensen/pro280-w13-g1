@@ -8,14 +8,14 @@
   </head>
   <body>
   <h1>These questions will focus on the housing and lifestyle choices while still in school.</h1>
-  <form name="?" action="?" method="?">
+  <form action="aspirations" method="get">
       <ol>
           <li>
               What is your housing situation?<br>
-              <c:forEach var="myVar" items="Neumont University housing.,Live with family or friends for free">
-                  <input type="radio" name="monthly_spending" value="1">${myVar}<br>
+              <c:forEach var="myVar" items="Neumont University housing,Live with family or friends for free">
+                  <input type="radio" name="housing_situation" value="${myVar}">${myVar}<br>
               </c:forEach>
-              <input type="radio" name="monthly_spending" value="${null}">Renting an apartment or similar<br>
+              <input type="radio" name="housing_situation" value="${null}">Renting an apartment or similar<br>
               <table border="1">
                   <tr>
                       <td>a. How much do you spend monthly for rent?</td>

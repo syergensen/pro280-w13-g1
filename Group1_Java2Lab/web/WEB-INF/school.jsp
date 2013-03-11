@@ -1,5 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.GregorianCalendar" %>
+<%@ page import="model.Quarter" %>
+<%@ page import="manager.QuarterManager" %>
+<%@ page import="manager.DegreeManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
@@ -7,26 +11,27 @@
   </head>
   <body>
       <h1>Please answer the following questions about your school and funding:</h1>
-      <form name="?" action="?" method="?">
+      <form action="lifeStyle" method="get">
           <ol>
               <li>
                   When did you start attending Neumont:<br>
                   <select name="quarter">
-                      <%for(String s : new String[]{"Fall", "Winter", "Spring", "Summer"})
-                      {%><option value="<%=s%>"><%=s%> Quarter</option><%}%>
+                      <c:forEach var="myVar" items="<%=QuarterManager.getStaticQuarters()%>">
+                          <option value="${myVar}">${myVar}Quarter</option>
+                      </c:forEach>
                   </select>
                   <select name="year">
-                      <%for(int i = 2003; i < (new GregorianCalendar()).get(GregorianCalendar.YEAR); i++)
-                      {%><option value="<%=i%>"><%=i%></option><%}%>
+                      <c:forEach var="myVar" begin="2003" end="<%=(new GregorianCalendar()).get(GregorianCalendar.YEAR)%>">
+                          <option value="${myVar}">${myVar}</option>
+                      </c:forEach>
                   </select>
               </li>
               <li>
                   Which program are you enrolled in:<br>
                   <select name="degree">
-                      <option value="BSCS">BSCS</option>
-                      <option value="BSGD">BSGD</option>
-                      <option value="BSTM">BSTM (previously BTOM)</option>
-                      <option value="BSWD">BSWD</option>
+                      <c:forEach var="myVar" items="<%=DegreeManager.getStaticDegrees()%>">
+                          <option value="${myVar}">${myVar}</option>
+                      </c:forEach>
                   </select>
               </li>
               <li>

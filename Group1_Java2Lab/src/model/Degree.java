@@ -52,4 +52,8 @@ public class Degree
     public void setDuration(Integer duration) {
         this.duration = duration;
     }
+
+    public String toString(){
+        return condition;
+    }
 }

@@ -17,6 +17,15 @@ public class DegreeManager
     @PersistenceContext
     EntityManager em;
 
+    @PersistenceContext
+    static EntityManager sem;
+
+    public static List<Degree> getStaticDegrees()
+    {
+        TypedQuery<Degree> degreeQuery = sem.createQuery("SELECT d FROM Degree d", Degree.class);
+        return degreeQuery.getResultList();
+    }
+
     public List<Degree> getDegrees()
     {
         TypedQuery<Degree> degreeQuery = em.createQuery("SELECT d FROM Degree d", Degree.class);
