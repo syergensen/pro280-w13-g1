@@ -1,5 +1,8 @@
 package controller;
 
+import manager.QuarterManager;
+
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +21,7 @@ import java.io.IOException;
  */
 @WebServlet(name = "lifeStyle", urlPatterns = {"/lifeStyle"})
 public class LifeStyleServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -33,6 +37,8 @@ public class LifeStyleServlet extends HttpServlet {
         for(int i = 1; request.getAttribute("debt" + i) != null; i++){
             request.setAttribute("debt" + i, "debt" + i);
         }
+
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/lifeStyle.jsp");
         dispatcher.forward(request, response);
     }

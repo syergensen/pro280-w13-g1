@@ -8,7 +8,7 @@
   </head>
   <body>
   <h1>In order to provide more accurate results we would like to know more about your aspirations, things that you desire to have after graduation:</h1>
-  <form name="?" action="?" method="?">
+  <form action="result/calculate" method="get">
       <ol>
           <li>
               <table>
@@ -16,7 +16,7 @@
                       <td>After graduating Neumont what is your preferred region to live in the United States:</td>
                       <td>
                           <select name="region">
-                              <c:forEach var="myVar" items="${RegionManager.getStaticRegions()}">
+                              <c:forEach var="myVar" items="${all_regions}">
                                   <option value="${myVar}">${myVar}</option>
                               </c:forEach>
                           </select>

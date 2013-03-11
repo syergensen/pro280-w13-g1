@@ -1,5 +1,9 @@
 package controller;
 
+import manager.DebtTypeManager;
+import manager.RegionManager;
+
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +22,13 @@ import java.io.IOException;
  */
 @WebServlet(name = "aspirations", urlPatterns = {"/aspirations"})
 public class AspirationsServlet extends HttpServlet {
+
+    @EJB
+    private DebtTypeManager dtm;
+
+    @EJB
+    private RegionManager rm;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -36,7 +47,8 @@ public class AspirationsServlet extends HttpServlet {
         }){
             session.setAttribute(s, request.getAttribute(s));
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("!unfinished-johns-results-servlet");
+        request.setAttribute("all_regions", rm.getRegions());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("resultCalculator");
         dispatcher.forward(request, response);
     }
 }
