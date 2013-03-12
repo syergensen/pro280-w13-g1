@@ -16,7 +16,7 @@ public class Quarter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "name", nullable = false, length = 40)
+    @Column(name = "quarter", nullable = false, length = 40)
     private String name;
 
     public String getName(){

@@ -13,7 +13,7 @@ public class Region
     @Column(name = "id", nullable = false, length = 11)
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 45)
+    @Column(name = "region", nullable = false, length = 45)
     private String name;
 
     @Column(name = "rent",  nullable = false)

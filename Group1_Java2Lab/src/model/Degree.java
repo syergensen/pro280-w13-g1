@@ -1,7 +1,6 @@
 package model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "Degree")
@@ -14,8 +13,8 @@ public class Degree
     @Column(name = "id", nullable = false, length = 11)
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 45)
-    private String condition;
+    @Column(name = "degree", nullable = false, length = 45)
+    private String degree;
 
     @Column(name = "duration", nullable = false)
     private Integer duration;
@@ -31,12 +30,12 @@ public class Degree
         this.id = id;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getDegree() {
+        return degree;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setDegree(String condition) {
+        this.degree = condition;
     }
 
     public Integer getDuration() {
@@ -48,6 +47,6 @@ public class Degree
     }
 
     public String toString(){
-        return condition;
+        return degree;
     }
 }

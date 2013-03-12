@@ -51,7 +51,7 @@ public class AspirationsServlet extends HttpServlet {
             session.setAttribute("input_utilities", h.getUtilities());
         }
         request.setAttribute("all_regions", rm.getRegions());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("resultCalculator");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/aspirations.jsp");
         dispatcher.forward(request, response);
     }
 

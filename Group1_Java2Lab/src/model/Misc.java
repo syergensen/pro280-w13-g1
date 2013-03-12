@@ -12,8 +12,8 @@ public class Misc
     @Column(name = "id", nullable = false, length = 11)
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 45)
-    private String name;
+    @Column(name = "misc", nullable = false, length = 45)
+    private String misc;
 
     @Column(name = "cost", nullable = false)
     private Double cost;
@@ -26,12 +26,12 @@ public class Misc
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getMisc() {
+        return misc;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMisc(String name) {
+        this.misc = name;
     }
 
     public Double getCost() {

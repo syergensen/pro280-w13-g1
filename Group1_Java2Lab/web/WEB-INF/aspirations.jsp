@@ -15,7 +15,7 @@
   </div>
   <div id="content">
       <h1>In order to provide more accurate results we would like to know more about your aspirations, things that you desire to have after graduation:</h1>
-      <form action="result/calculate" method="get">
+      <form action="result/calculate" method="post">
           <ol>
               <li>
                   <table>
@@ -24,7 +24,7 @@
                           <td>
                               <select name="region">
                                   <c:forEach var="myVar" items="${all_regions}">
-                                      <option value="${myVar}">${myVar}</option>
+                                      <option value="${myVar}">${myVar.name}</option>
                                   </c:forEach>
                               </select>
                           </td>
@@ -37,17 +37,17 @@
                       <tr>
                           <td>
                               <c:forEach var="myVar" items="New, Used">
-                                  <input type="radio" name="car_status" value="${myVar}">${myVar} car</option>
+                                  <input type="radio" name="car_status" value="${myVar}">${myVar} car</option> <br>
                               </c:forEach>
                           </td>
                           <td>
                               <c:forEach var="myVar" items="High end, Average, Below average">
-                                  <input type="radio" name="fuel_economy" value="${myVar}">${myVar} fuel economy</option>
+                                  <input type="radio" name="fuel_economy" value="${myVar}">${myVar} fuel economy</option>     <br>
                               </c:forEach>
                           </td>
                           <td>
                               <c:forEach var="myVar" items="Above average, Average, Below average">
-                                  <input type="radio" name="car_quality" value="${myVar}">${myVar} car</option>
+                                  <input type="radio" name="car_quality" value="${myVar}">${myVar} car</option>    <br>
                               </c:forEach>
                           </td>
                       </tr>
@@ -60,6 +60,8 @@
                   </c:forEach>
               </li>
           </ol>
+
+          <input type="submit" value="Next Step"/>
       </form>
       </div>
   </body>
