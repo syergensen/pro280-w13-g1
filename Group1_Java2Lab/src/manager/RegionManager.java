@@ -26,12 +26,6 @@ public class RegionManager
         return regionQuery.getResultList();
     }
 
-    public static List<Region> getStaticRegions()
-    {
-        TypedQuery<Region> regionQuery = sem.createQuery("SELECT r FROM Region r", Region.class);
-        return regionQuery.getResultList();
-    }
-
     public Region getRegion(Integer id)
     {
         return em.find(Region.class, id);

@@ -29,9 +29,4 @@ public class QuarterManager {
         TypedQuery<Quarter> myList = em.createQuery("SELECT p FROM Quarter p", Quarter.class);
         return myList.getResultList();
     }
-
-    public static List<Quarter> getStaticQuarters(){
-        TypedQuery<Quarter> myList = sem.createQuery("SELECT p FROM Quarter p", Quarter.class);
-        return myList.getResultList();
-    }
 }
