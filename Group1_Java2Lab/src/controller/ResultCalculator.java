@@ -93,22 +93,6 @@ public class ResultCalculator extends HttpServlet
         //Savings Act Contribution
         //to be determined
 
-
-
-
-//        Salary.....................${salary}<br>
-//            Student Loan...............${studentloan}<br>
-//            Income Tax.................${income}<br>
-//            Misc. Expenses.............${miscinsurance}<br>
-//            Car Expenses...............${carpayment}<br>
-//            Mortgage/Rent..............${mortgage}<br>
-//            Misc. Loans................${totalloans}<br>
-//            Savings Act Contribution...${inschoolsavings}<br>
-//        <br>
-//        <br>
-//            Discretionary Income: ${discretionary}
-
-
         request.getRequestDispatcher(getServletConfig().getInitParameter("success")).forward(request, response);
 
     }

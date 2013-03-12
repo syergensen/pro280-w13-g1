@@ -25,7 +25,7 @@ public class RegionManager
 
     public Region findRegion(String name)
     {
-        TypedQuery<Region> regionQuery = sem.createQuery("SELECT r FROM Region r WHERE name = " + name, Region.class);
+        TypedQuery<Region> regionQuery = em.createQuery("SELECT r FROM Region r WHERE name = " + name, Region.class);
         return regionQuery.getSingleResult();
     }
 
