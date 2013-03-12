@@ -11,7 +11,6 @@ import java.util.List;
 
 @Stateless
 @LocalBean
-
 public class RegionManager
 {
     @PersistenceContext
