@@ -58,6 +58,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath());
         }catch(ServletException e){
             // if the user logs in incorrectly, redirect the user to an error page to let them know
+
             request.getRequestDispatcher("/WEB-INF/login/login_error.jsp").forward(request, response);
          }
     }

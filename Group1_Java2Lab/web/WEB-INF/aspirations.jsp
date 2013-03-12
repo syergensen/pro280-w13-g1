@@ -5,54 +5,62 @@
 <html>
   <head>
     <title></title>
+      <link href="./resources/styles/stylesheet.css" rel="stylesheet" type="text/css" />
+      <script type="text/javascript" src="./resources/scripts/script.js"></script>
   </head>
   <body>
-  <h1>In order to provide more accurate results we would like to know more about your aspirations, things that you desire to have after graduation:</h1>
-  <form action="result/calculate" method="get">
-      <ol>
-          <li>
-              <table>
-                  <tr>
-                      <td>After graduating Neumont what is your preferred region to live in the United States:</td>
-                      <td>
-                          <select name="region">
-                              <c:forEach var="myVar" items="${all_regions}">
-                                  <option value="${myVar}">${myVar}</option>
+
+  <div id="header">
+      <jsp:include page="header/header.jsp"/>
+  </div>
+  <div id="content">
+      <h1>In order to provide more accurate results we would like to know more about your aspirations, things that you desire to have after graduation:</h1>
+      <form action="result/calculate" method="get">
+          <ol>
+              <li>
+                  <table>
+                      <tr>
+                          <td>After graduating Neumont what is your preferred region to live in the United States:</td>
+                          <td>
+                              <select name="region">
+                                  <c:forEach var="myVar" items="${all_regions}">
+                                      <option value="${myVar}">${myVar}</option>
+                                  </c:forEach>
+                              </select>
+                          </td>
+                      </tr>
+                  </table>
+              </li>
+              <li>
+                  Please describe your preferred car:
+                  <table>
+                      <tr>
+                          <td>
+                              <c:forEach var="myVar" items="New, Used">
+                                  <input type="radio" name="car_status" value="${myVar}">${myVar} car</option>
                               </c:forEach>
-                          </select>
-                      </td>
-                  </tr>
-              </table>
-          </li>
-          <li>
-              Please describe your preferred car:
-              <table>
-                  <tr>
-                      <td>
-                          <c:forEach var="myVar" items="New, Used">
-                              <input type="radio" name="car_status" value="${myVar}">${myVar} car</option>
-                          </c:forEach>
-                      </td>
-                      <td>
-                          <c:forEach var="myVar" items="High end, Average, Below average">
-                              <input type="radio" name="fuel_economy" value="${myVar}">${myVar} fuel economy</option>
-                          </c:forEach>
-                      </td>
-                      <td>
-                          <c:forEach var="myVar" items="Above average, Average, Below average">
-                              <input type="radio" name="car_quality" value="${myVar}">${myVar} car</option>
-                          </c:forEach>
-                      </td>
-                  </tr>
-              </table>
-          </li>
-          <li>
-              Please describe your preferred house:
-              <c:forEach var="myVar" items="Own, Rent, Live with parents">
-                  <input type="radio" name="housing" value="${myVar}">${myVar}</option>
-              </c:forEach>
-          </li>
-      </ol>
-  </form>
+                          </td>
+                          <td>
+                              <c:forEach var="myVar" items="High end, Average, Below average">
+                                  <input type="radio" name="fuel_economy" value="${myVar}">${myVar} fuel economy</option>
+                              </c:forEach>
+                          </td>
+                          <td>
+                              <c:forEach var="myVar" items="Above average, Average, Below average">
+                                  <input type="radio" name="car_quality" value="${myVar}">${myVar} car</option>
+                              </c:forEach>
+                          </td>
+                      </tr>
+                  </table>
+              </li>
+              <li>
+                  Please describe your preferred house:
+                  <c:forEach var="myVar" items="Own, Rent, Live with parents">
+                      <input type="radio" name="housing" value="${myVar}">${myVar}</option>
+                  </c:forEach>
+              </li>
+          </ol>
+      </form>
+      </div>
   </body>
 </html>

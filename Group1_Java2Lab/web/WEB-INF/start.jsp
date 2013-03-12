@@ -9,8 +9,8 @@
 <html>
 <head>
     <title>Financial Tool - Start</title>
-    <link href="../resources/styles/stylesheet.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../resources/scripts/script.js"></script>
+    <link href="./resources/styles/stylesheet.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./resources/scripts/script.js"></script>
 </head>
 <body>
     <div id="header">
@@ -25,7 +25,7 @@
                 <textarea rows="20" cols="60" readonly>${termsOfService.terms}</textarea>  <br>
                 <input type="checkbox" name="checkbox"> I have read the Terms of Service<br>
             </div>
-            <input type="submit" value="Begin">
+            <input id="beginButton" type="submit" value="Begin">
         </form>
     </div>
 </body>

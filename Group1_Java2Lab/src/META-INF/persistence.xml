@@ -5,6 +5,13 @@
         <class>model.TermsOfService</class>
         <class>model.Group</class>
         <class>model.User</class>
+        <class>model.Quarter</class>
+        <class>model.Car</class>
+        <class>model.DebtType</class>
+        <class>model.Degree</class>
+        <class>model.Housing</class>
+        <class>model.Misc</class>
+        <class>model.Region</class>
         <properties>
             <!--<property name="toplink.cache.shared.default" value="false"/>-->
             <property name="toplink.logging.level" value="FINE" />

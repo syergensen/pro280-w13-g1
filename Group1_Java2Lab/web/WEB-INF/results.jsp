@@ -2,18 +2,26 @@
 <html>
 <head>
     <title></title>
+    <link href="./resources/styles/stylesheet.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./resources/scripts/script.js"></script>
 </head>
 <body>
-Salary.....................${salary}<br>
-Student Loan...............${studentloan}<br>
-Income Tax.................${incometax}<br>
-Misc. Expenses.............${miscexpenses}<br>
-Car Expenses...............${carexpenses}<br>
-Mortgage/Rent..............${mortgage}<br>
-Misc. Loans................${miscloans}<br>
-Savings Act Contribution...${savings}<br>
-<br>
-<br>
-Discretionary Income: ${discretionary}
+
+<div id="header">
+    <jsp:include page="header/header.jsp"/>
+</div>
+    <div id="content">
+        Salary.....................${salary}<br>
+        Student Loan...............${studentloan}<br>
+        Income Tax.................${incometax}<br>
+        Misc. Expenses.............${miscexpenses}<br>
+        Car Expenses...............${carexpenses}<br>
+        Mortgage/Rent..............${mortgage}<br>
+        Misc. Loans................${miscloans}<br>
+        Savings Act Contribution...${savings}<br>
+        <br>
+        <br>
+        Discretionary Income: ${discretionary}
+    </div>
 </body>
 </html>

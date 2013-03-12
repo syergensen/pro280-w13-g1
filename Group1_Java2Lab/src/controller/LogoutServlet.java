@@ -8,13 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: sgomez
- * Date: 2/26/13
- * Time: 7:10 PM
- * To change this template use File | Settings | File Templates.
- */
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 
@@ -28,6 +21,6 @@ public class LogoutServlet extends HttpServlet {
              session.invalidate();
        }
         // redirect the user back to the login page
-        response.sendRedirect(request.getContextPath() + "/login");
+        response.sendRedirect(request.getContextPath() + "/terms");
     }
 }
