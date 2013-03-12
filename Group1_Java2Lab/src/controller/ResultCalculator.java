@@ -53,7 +53,7 @@ public class ResultCalculator extends HttpServlet
         //School
         String startMonth = (String)session.getAttribute("quarter");
         Integer startYear = Integer.parseInt((String)session.getAttribute("year"));
-        Degree degree = (Degree)session.getAttribute("degree");
+        Degree degree = degreeManager.findDegree((String)session.getAttribute("degree"));
         Integer expectedFull = Integer.parseInt((String)session.getAttribute("extra-quarter-full"));
         Integer expectedPart = Integer.parseInt((String)session.getAttribute("extra-quarter-part"));
         Integer loanPercent = Integer.parseInt((String)session.getAttribute("loan-percent"));
