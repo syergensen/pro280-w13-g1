@@ -9,13 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: sgomez
- * Date: 3/8/13
- * Time: 6:12 PM
- * To change this template use File | Settings | File Templates.
- */
 @Stateless
 @LocalBean
 public class GroupManager {
@@ -23,6 +16,7 @@ public class GroupManager {
     @PersistenceContext
     private EntityManager em;
 
+    // grabs a specific role by the role name in the Group table
     public Group getGroup(String groupName){
         TypedQuery<Group> query = em.createNamedQuery(Group.GROUP_BY_GROUP_NAME_QUERY, Group.class);
         query.setParameter("name", groupName);
@@ -32,6 +26,7 @@ public class GroupManager {
         return null;
     }
 
+    // saves a role to the Group table when added
     public void saveGroup(Group group){
         em.persist(group);
     }

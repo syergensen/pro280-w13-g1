@@ -4,14 +4,6 @@
            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
            version="2.5">
-    <servlet>
-        <servlet-name>LifeStyleServlet</servlet-name>
-        <servlet-class>controller.LifeStyleServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AspirationsServlet</servlet-name>
-        <servlet-class>controller.AspirationsServlet</servlet-class>
-    </servlet>
 
     <welcome-file-list>
         <welcome-file>terms</welcome-file>

@@ -6,13 +6,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-/**
- * Created with IntelliJ IDEA.
- * User: sgomez
- * Date: 3/8/13
- * Time: 6:13 PM
- * To change this template use File | Settings | File Templates.
- */
 @Entity
 @Table(name = "users")
 @NamedQueries({

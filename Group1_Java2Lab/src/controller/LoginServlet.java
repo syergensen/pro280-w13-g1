@@ -18,13 +18,6 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created with IntelliJ IDEA.
- * User: sgomez
- * Date: 2/26/13
- * Time: 7:09 PM
- * To change this template use File | Settings | File Templates.
- */
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     @EJB
@@ -35,14 +28,12 @@ public class LoginServlet extends HttpServlet {
     private static final String DUMMY_PASSWORD = "dummypassword";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // redirect the user to login with the NUID Authentication Service
-        String fullPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-        String context = request.getContextPath();
-
         try{
+            // grabs the users username and role to authenticate their login
             String username = request.getParameter("username");
             String role = request.getParameter("role");
 
+            // if the users role does not exist in the database, create a new role in the Group table
              Group group = groupManager.getGroup(role);
              if(group == null){
                  group = new Group();
@@ -50,6 +41,7 @@ public class LoginServlet extends HttpServlet {
                  groupManager.saveGroup(group);
              }
 
+            // if the users username does not exist in the database, create a new username in the User table
              User user = userManager.getUser(username);
              if(user == null){
                  user = new User();
@@ -57,15 +49,16 @@ public class LoginServlet extends HttpServlet {
                  user.setPassword(Encryption.digest(DUMMY_PASSWORD, EncryptionType.MD5));
                  Set<Group> groups = new HashSet<Group>();
                  groups.add(group);
+                 user.setGroups(groups);
                  userManager.saveUser(user);
              }
 
             request.logout();
             request.login(username, DUMMY_PASSWORD);
-//            response.sendRedirect("http://my.neumont.edu/nuid/service.aspx?ReturnUrl=" + fullPath + "/terms");
-             response.sendRedirect(request.getContextPath());
+            response.sendRedirect(request.getContextPath());
         }catch(ServletException e){
-            response.sendRedirect("http://my.neumont.edu/nuid/service.aspx?ReturnUrl=" + fullPath + "/login");
+            // if the user logs in incorrectly, redirect the user to an error page to let them know
+            request.getRequestDispatcher("/WEB-INF/login/login_error.jsp").forward(request, response);
          }
     }
 }

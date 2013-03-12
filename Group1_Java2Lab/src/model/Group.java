@@ -3,13 +3,6 @@ package model;
 import javax.persistence.*;
 import java.util.Set;
 
-/**
- * Created with IntelliJ IDEA.
- * User: sgomez
- * Date: 3/8/13
- * Time: 6:13 PM
- * To change this template use File | Settings | File Templates.
- */
 @Entity
 @Table(name = "groups")
 @NamedQuery(name = Group.GROUP_BY_GROUP_NAME_QUERY, query = "SELECT g FROM Group G where g.name = :name")

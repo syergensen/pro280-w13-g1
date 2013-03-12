@@ -9,12 +9,12 @@
 <html>
 <head>
     <title>Financial Tool - Start</title>
-    <link href="scripts/stylesheet.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="scripts/script.js"></script>
+    <link href="../resources/styles/stylesheet.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../resources/scripts/script.js"></script>
 </head>
 <body>
     <div id="header">
-        <jsp:include page="WEB-INF/header/header.jsp"/>
+        <jsp:include page="header/header.jsp"/>
     </div>
 
     <div id="content">

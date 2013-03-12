@@ -7,20 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Principal;
 
-/**
- * Created with IntelliJ IDEA.
- * User: sgomez
- * Date: 3/6/13
- * Time: 5:57 PM
- * To change this template use File | Settings | File Templates.
- */
-//@WebFilter("/*")
+@WebFilter("/*")
 public class SecurityFilter implements Filter {
 
+    // This filter is for making sure the user is logged in before trying to access any pages within the site.
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         Principal userPrincipal = request.getUserPrincipal();
-        String path = request.getServletPath();
 
         // redirect the user if they are not logged in, unless they're in the process of logging in
         if(userPrincipal == null && !"/login".equals(request.getServletPath())){

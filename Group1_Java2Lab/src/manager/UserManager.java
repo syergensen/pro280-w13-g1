@@ -9,13 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: sgomez
- * Date: 3/8/13
- * Time: 6:12 PM
- * To change this template use File | Settings | File Templates.
- */
 @Stateless
 @LocalBean
 public class UserManager {
@@ -23,11 +16,13 @@ public class UserManager {
     @PersistenceContext
     private EntityManager em;
 
+    // gets a list of all the users in the User table
     public List<User> getUsers(){
         TypedQuery<User> query = em.createNamedQuery(User.ALL_USERS_QUERY, User.class);
         return query.getResultList();
     }
 
+    // grabs a user by their username in the User table
     public User getUser(String username){
         TypedQuery<User> query = em.createNamedQuery(User.USER_NAME_QUERY, User.class);
         query.setParameter("name", username);
@@ -37,6 +32,7 @@ public class UserManager {
         return null;
     }
 
+    // saves the user to the User table when added
     public void saveUser(User user){
         em.persist(user);
     }

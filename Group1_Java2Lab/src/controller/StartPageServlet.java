@@ -8,15 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: sgomez
- * Date: 2/27/13
- * Time: 10:34 PM
- * To change this template use File | Settings | File Templates.
- */
 @WebServlet(urlPatterns = "/start", initParams = {
-@WebInitParam(name="SchoolPage", value=""),
+@WebInitParam(name="SchoolPage", value="school"),
         @WebInitParam(name="Terms", value="terms")
 })
 public class StartPageServlet extends HttpServlet {

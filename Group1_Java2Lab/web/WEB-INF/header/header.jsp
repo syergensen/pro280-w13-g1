@@ -1,6 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="neumont_logo">
-    <img src="images/Neumont_Logo_CMYK.jpg"/>
+    <img src="resources/images/Neumont_Logo_CMYK.jpg"/>
 
     <div class="logout"><h5>[<a href="logout">Logout</a>]</h5></div>
 </div>
