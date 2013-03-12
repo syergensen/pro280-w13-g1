@@ -2,7 +2,7 @@ package model;
 
 import javax.persistence.*;
 
-@Table
+@Table(name = "Housing")
 @Entity
 
 public class Housing

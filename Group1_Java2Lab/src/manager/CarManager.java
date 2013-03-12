@@ -23,6 +23,13 @@ public class CarManager
         return carQuery.getResultList();
     }
 
+    public Car findCar(String condition, String quality)
+    {
+        TypedQuery<Car> carQuery = em.createQuery("SELECT c FROM Car c WHERE condition = " + condition + ", quality = " + quality, Car.class);
+        return carQuery.getSingleResult();
+
+    }
+
     public Car getCar(Integer id)
     {
         return em.find(Car.class, id);

@@ -1,6 +1,10 @@
 package controller;
 
 import manager.*;
+import model.Car;
+import model.Degree;
+import model.Housing;
+import model.Region;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -35,60 +39,77 @@ public class ResultCalculator extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         HttpSession session = request.getSession();
-        String degree = (String)session.getAttribute("degree");
-        Double extraquarterfull = Double.parseDouble((String)session.getAttribute("extra-quarter-full"));
-        Double extraquarterpart = Double.parseDouble((String)session.getAttribute("extra-quarter-part"));
-        Double loanpercent = Double.parseDouble((String)session.getAttribute("loan-percent"));
+
+        //School
+        String startMonth = (String)session.getAttribute("startMonth");
+        Integer startYear = Integer.parseInt((String)session.getAttribute("startYear"));
+        Degree degree = (Degree)session.getAttribute("degree");
+        Integer expectedFull = Integer.parseInt((String)session.getAttribute("expectedFull"));
+        Integer expectedPart = Integer.parseInt((String)session.getAttribute("expectedPart"));
+        Integer loanPercent = Integer.parseInt((String)session.getAttribute("loanPercent"));
         Double debt1 = Double.parseDouble((String)session.getAttribute("debt1"));
         Double debt2 = Double.parseDouble((String)session.getAttribute("debt2"));
         Double debt3 = Double.parseDouble((String)session.getAttribute("debt3"));
 
-        //calculates the result
-        Double income = degreeManager.findDegree(degree).getSalary() / 12;
-        Double healthinsurance = 0.00;
-        Double miscinsurance = 0.00;
+        //Housing & Lifestyle
+        Double rent = Double.parseDouble((String)session.getAttribute("rent"));
+        Double utilities = Double.parseDouble((String)session.getAttribute("utilities"));
+        Double lunch = Double.parseDouble((String)session.getAttribute("go_out_to_lunch"));
+        Double dinner = Double.parseDouble((String)session.getAttribute("go_out_to_dinner"));
+        Double entertainment = Double.parseDouble((String)session.getAttribute("spend_on_entertainment"));
 
-        Double carcost = carManager.getCar(1).getPrice();
-        Double carintrest = carcost * .4;
-        Double carpayment = carcost + carintrest;
-        carpayment = carpayment / 48;
+        //Post-Graduation
+        Region region = (Region)session.getAttribute("region");
+        Car car = (Car)session.getAttribute("car");
+        Housing housing = (Housing)session.getAttribute("housing");
+        Double payments = Double.parseDouble((String)session.getAttribute("payments"));
 
-        Double mortgage = housingManager.getHousing(1).getRent();
-        Double utilities = housingManager.getHousing(1).getUtilities();
 
-        Double inschoolhousing = housingManager.getHousing(1).getRent();
-        inschoolhousing += housingManager.getHousing(1).getUtilities();
+        //Salary
+        Double salary = degree.getSalary() / 12;
 
-        //quarter is 10 weeks
-        Double totalloans = degreeManager.findDegree(degree).getDuration() * 7200.0 / 12;
-        totalloans += degreeManager.findDegree(degree).getDuration() * inschoolhousing;
+        //Student loan, duration, payment, and interest
+        //not calculated yet
 
-        Double inschoolsavings = 0.00;
-        Double discretionary = 0.00;
+        //Income tax
+        Double incomeTax = degree.getSalary() * region.getTaxrate() / 12;
 
-        session.setAttribute("income", income);
-        session.setAttribute("healthinsurance", healthinsurance);
-        session.setAttribute("miscinsurance", miscinsurance);
-        session.setAttribute("carpayment", carpayment);
-        session.setAttribute("mortgage", mortgage);
-        session.setAttribute("utilities", utilities);
-        session.setAttribute("totalloans", totalloans);
-        session.setAttribute("inschoolsavings", inschoolsavings);
-        session.setAttribute("discretionary", discretionary);
+        // Misc Expenses
+        Double lunchMonth = lunch * 4.34812;
+        Double dinnerMonth = dinner * 4.34812;
+        Double miscExpenses = lunchMonth + dinnerMonth + entertainment;
 
-        request.getRequestDispatcher(getServletConfig().getInitParameter("success")).forward(request, response);
-//        Salary..................${salary}<br>
-//            Income Tax..............${income}<br>
-//            Health Insurance........${healthinsurance}<br>
-//            Misc. Insurance.........${miscinsurance}<br>
-//            Car Payment.............${carpayment}<br>
-//            Mortgage/Rent...........${mortgage}<br>
-//            Utilities...............${utilities}<br>
-//            Total Loans.............${totalloans}<br>
-//            In-School Savings.......${inschoolsavings}<br>
+        //Car Expenses
+        Double mpg = car.getMpg();
+        Double gasMonth = 1600 / mpg * 3.6;
+        Double carMonth = gasMonth + payments;
+
+        //Mortgage/Rent
+        Double mortgageRent = housing.getRent() + housing.getUtilities();
+
+        //Misc. Loans
+        //to be determined
+
+        //Savings Act Contribution
+        //to be determined
+
+
+
+
+//        Salary.....................${salary}<br>
+//            Student Loan...............${studentloan}<br>
+//            Income Tax.................${income}<br>
+//            Misc. Expenses.............${miscinsurance}<br>
+//            Car Expenses...............${carpayment}<br>
+//            Mortgage/Rent..............${mortgage}<br>
+//            Misc. Loans................${totalloans}<br>
+//            Savings Act Contribution...${inschoolsavings}<br>
 //        <br>
 //        <br>
 //            Discretionary Income: ${discretionary}
+
+
+        request.getRequestDispatcher(getServletConfig().getInitParameter("success")).forward(request, response);
 
     }
 

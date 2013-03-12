@@ -32,6 +32,12 @@ public class RegionManager
         return regionQuery.getResultList();
     }
 
+    public Region findRegion(String name)
+    {
+        TypedQuery<Region> regionQuery = sem.createQuery("SELECT r FROM Region r WHERE name = " + name, Region.class);
+        return regionQuery.getSingleResult();
+    }
+
     public Region getRegion(Integer id)
     {
         return em.find(Region.class, id);

@@ -2,7 +2,7 @@ package model;
 
 import javax.persistence.*;
 
-@Table
+@Table(name = "DebtType")
 @Entity
 
 public class DebtType
