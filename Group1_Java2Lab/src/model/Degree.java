@@ -19,8 +19,8 @@ public class Degree
     @Column(name = "duration", nullable = false)
     private Integer duration;
 
-    @OneToMany(mappedBy = "degree")
-    private List<DegreeRegionSalary> degreeRegionSalaries;
+//    @OneToMany(mappedBy = "degree")
+//    private List<DegreeRegionSalary> degreeRegionSalaries;
 
     public Integer getId() {
         return id;

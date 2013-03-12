@@ -6,4 +6,8 @@ $(document).ready(function() {
             $(this).parent().addClass("highlight");
         }
     });
+
+    function getRangeValues(val){
+        document.getElementsById('rangeInput').value = val;
+    }
 })

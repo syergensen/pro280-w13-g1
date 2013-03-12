@@ -18,9 +18,9 @@
       <form action="result/calculate" method="post">
           <ol>
               <li>
+                  After graduating Neumont what is your preferred region to live in the United States:
                   <table>
                       <tr>
-                          <td>After graduating Neumont what is your preferred region to live in the United States:</td>
                           <td>
                               <select name="region">
                                   <c:forEach var="myVar" items="${all_regions}">
