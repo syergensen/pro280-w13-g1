@@ -38,7 +38,7 @@ public class LifeStyleServlet extends HttpServlet {
                 "scholarships",
                 "interestrate",
                 "loan-percent"}){
-            session.setAttribute(s, request.getAttribute(s));
+            session.setAttribute(s, request.getParameter(s));
         }
         for(int i = 1; request.getAttribute("debt" + i) != null; i++){
             session.setAttribute("debt" + i, "debt" + i);
