@@ -30,7 +30,7 @@ public class DegreeManager
 
     public Degree findDegree(String name)
     {
-        TypedQuery<Degree> degreeQuery = em.createQuery("SELECT d FROM Degree d WHERE name="+name, Degree.class);
+        TypedQuery<Degree> degreeQuery = em.createQuery("SELECT d FROM Degree d WHERE name='"+name+"'", Degree.class);
         return degreeQuery.getSingleResult();
     }
 
