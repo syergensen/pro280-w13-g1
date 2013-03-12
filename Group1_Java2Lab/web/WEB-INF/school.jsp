@@ -47,6 +47,9 @@
                   <li>
                       How much (if any) outstanding ${myVar.type} do you have?
                       <input type="number" name="debt${myVar.id}">
+                      Loan information:<br>
+                      Total amount of grants/scholarships: <input type="number" name="scholarships">
+                      Interest rate: <input type="number" name="interestrate">
                   </li>
               </c:forEach>
           </ol>
