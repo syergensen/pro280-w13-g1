@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "Region")
 @Entity
@@ -15,8 +16,14 @@ public class Region
     @Column(name = "name", nullable = false, length = 45)
     private String name;
 
-    @Column(name = "taxrate", nullable = false)
-    private Double taxrate;
+    @Column(name = "rent",  nullable = false)
+    private Double rent;
+
+    @Column(name = "housing", nullable = false)
+    private Double housing;
+
+    @OneToMany(mappedBy = "region")
+    private List<DegreeRegionSalary> degreeRegionSalaries;
 
     public Integer getId() {
         return id;
@@ -34,11 +41,19 @@ public class Region
         this.name = name;
     }
 
-    public Double getTaxrate() {
-        return taxrate;
+    public Double getRent() {
+        return rent;
     }
 
-    public void setTaxrate(Double taxrate) {
-        this.taxrate = taxrate;
+    public void setRent(Double rent) {
+        this.rent = rent;
+    }
+
+    public Double getHousing() {
+        return housing;
+    }
+
+    public void setHousing(Double housing) {
+        this.housing = housing;
     }
 }

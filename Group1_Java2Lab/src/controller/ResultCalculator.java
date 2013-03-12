@@ -1,10 +1,7 @@
 package controller;
 
 import manager.*;
-import model.Car;
-import model.Degree;
-import model.Housing;
-import model.Region;
+import model.*;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -35,6 +32,8 @@ public class ResultCalculator extends HttpServlet
     MiscManager miscManager;
     @EJB
     RegionManager regionManager;
+    @EJB
+    DegreeRegionSalaryManager degreeRegionSalaryManager;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
@@ -66,6 +65,8 @@ public class ResultCalculator extends HttpServlet
         Housing housing = (Housing)session.getAttribute("housing");
         Double payments = Double.parseDouble((String)session.getAttribute("payments"));
 
+        DegreeRegionSalary drs = degreeRegionSalaryManager.getDegreeRegionSalary(degree.getId(), region.getId());
+
         Double salary;
         Double studentloan;
         Double incometax;
@@ -77,7 +78,7 @@ public class ResultCalculator extends HttpServlet
         Double discretionary;
 
         //Salary
-        salary = degree.getSalary() / 12;
+        salary = drs.getSalary() / 12;
 
         //Student loan
         if(loanPercent == 0)
@@ -97,7 +98,11 @@ public class ResultCalculator extends HttpServlet
         }
 
         //Income tax
-        incometax = degree.getSalary() * region.getTaxrate() / 12;
+        Double firstBracket = 9000 * 0.1;
+        Double secondBracket = (36000 - 9000) * 0.15;
+        Double thirdBracket = (drs.getSalary() - 36000) * .25;
+        incometax = firstBracket + secondBracket + thirdBracket;
+        incometax = incometax / 12;
 
         // Misc Expenses
         Double lunchMonth = lunch * 4.34812;

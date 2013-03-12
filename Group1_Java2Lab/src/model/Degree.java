@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "Degree")
 @Entity
@@ -15,11 +17,11 @@ public class Degree
     @Column(name = "name", nullable = false, length = 45)
     private String condition;
 
-    @Column(name = "salary")
-    private Double salary;
-
     @Column(name = "duration", nullable = false)
     private Integer duration;
+
+    @OneToMany(mappedBy = "degree")
+    private List<DegreeRegionSalary> degreeRegionSalaries;
 
     public Integer getId() {
         return id;
@@ -35,14 +37,6 @@ public class Degree
 
     public void setCondition(String condition) {
         this.condition = condition;
-    }
-
-    public Double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Double salary) {
-        this.salary = salary;
     }
 
     public Integer getDuration() {
