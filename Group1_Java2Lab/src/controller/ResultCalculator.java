@@ -47,6 +47,8 @@ public class ResultCalculator extends HttpServlet
         Integer expectedFull = Integer.parseInt((String)session.getAttribute("expectedFull"));
         Integer expectedPart = Integer.parseInt((String)session.getAttribute("expectedPart"));
         Integer loanPercent = Integer.parseInt((String)session.getAttribute("loanPercent"));
+        Double scholarships = Double.parseDouble((String)session.getAttribute("scholarships"));
+        Integer interestRate = Integer.parseInt((String)session.getAttribute("interestrate"));
         Double debt1 = Double.parseDouble((String)session.getAttribute("debt1"));
         Double debt2 = Double.parseDouble((String)session.getAttribute("debt2"));
         Double debt3 = Double.parseDouble((String)session.getAttribute("debt3"));
@@ -64,34 +66,92 @@ public class ResultCalculator extends HttpServlet
         Housing housing = (Housing)session.getAttribute("housing");
         Double payments = Double.parseDouble((String)session.getAttribute("payments"));
 
+        Double salary;
+        Double studentloan;
+        Double incometax;
+        Double miscexpenses;
+        Double carexpenses;
+        Double mortgage;
+        Double miscloans;
+        Double savings;
+        Double discretionary;
 
         //Salary
-        Double salary = degree.getSalary() / 12;
+        salary = degree.getSalary() / 12;
 
-        //Student loan, duration, payment, and interest
-        //not calculated yet
+        //Student loan
+        if(loanPercent == 0)
+        {
+            studentloan = 0.0;
+        }
+        else
+        {
+            Double totalprice = degree.getDuration() * 7200.0;
+            Double totalrent = rent / 4.34812 * 100;
+            Double totalutilities = utilities / 4.34812 * 100;
+            totalprice += (totalrent + totalutilities);
+            Double totalloan = totalprice * (loanPercent / 100);
+            Double annualrate = interestRate / 1200.0;
+            Double payment = annualrate + (annualrate / (Math.pow(annualrate + 1, 120) - 1)) * totalloan;
+            studentloan = payment;
+        }
 
         //Income tax
-        Double incomeTax = degree.getSalary() * region.getTaxrate() / 12;
+        incometax = degree.getSalary() * region.getTaxrate() / 12;
 
         // Misc Expenses
         Double lunchMonth = lunch * 4.34812;
         Double dinnerMonth = dinner * 4.34812;
-        Double miscExpenses = lunchMonth + dinnerMonth + entertainment;
+        miscexpenses = lunchMonth + dinnerMonth + entertainment;
 
         //Car Expenses
         Double mpg = car.getMpg();
         Double gasMonth = 1600 / mpg * 3.6;
-        Double carMonth = gasMonth + payments;
+        carexpenses = gasMonth + payments;
 
         //Mortgage/Rent
-        Double mortgageRent = housing.getRent() + housing.getUtilities();
+        mortgage = housing.getRent() + housing.getUtilities();
 
         //Misc. Loans
         //to be determined
+        miscloans = 0.0;
 
         //Savings Act Contribution
         //to be determined
+        savings = 0.0;
+
+        discretionary = salary - (studentloan + incometax + miscexpenses + carexpenses + mortgage + miscloans + savings);
+
+        session.setAttribute("salary", salary);
+        session.setAttribute("studentloan", studentloan);
+        session.setAttribute("incometax", incometax);
+        session.setAttribute("miscexpenses", miscexpenses);
+        session.setAttribute("carexpenses", carexpenses);
+        session.setAttribute("mortgage", mortgage);
+        session.setAttribute("miscloans", miscloans);
+        session.setAttribute("savings", savings);
+        session.setAttribute("discretionary", discretionary);
+
+
+
+
+
+
+//        <body>
+//            Salary.....................${salary}<br>
+//            Student Loan...............${studentloan}<br>
+//            Income Tax.................${incometax}<br>
+//            Misc. Expenses.............${miscexpenses}<br>
+//            Car Expenses...............${carexpenses}<br>
+//            Mortgage/Rent..............${mortgage}<br>
+//            Misc. Loans................${miscloans}<br>
+//            Savings Act Contribution...${savings}<br>
+//        <br>
+//        <br>
+//            Discretionary Income: ${discretionary}
+//        </body>
+
+
 
         request.getRequestDispatcher(getServletConfig().getInitParameter("success")).forward(request, response);
 
