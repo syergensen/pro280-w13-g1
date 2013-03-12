@@ -1,5 +1,10 @@
 package controller;
 
+import manager.DebtTypeManager;
+import manager.RegionManager;
+import model.Housing;
+
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +23,13 @@ import java.io.IOException;
  */
 @WebServlet(name = "aspirations", urlPatterns = {"/aspirations"})
 public class AspirationsServlet extends HttpServlet {
+
+    @EJB
+    private DebtTypeManager dtm;
+
+    @EJB
+    private RegionManager rm;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -26,9 +38,6 @@ public class AspirationsServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         for(String s : new String[]{
-                "housing_situation",
-                "input_rent",
-                "input_rent",
                 "input_bills",
                 "go_out_to_lunch",
                 "go_out_to_dinner",
@@ -36,7 +45,17 @@ public class AspirationsServlet extends HttpServlet {
         }){
             session.setAttribute(s, request.getAttribute(s));
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("!unfinished-johns-results-servlet");
+
+        Housing h = (Housing) request.getAttribute("housing_situation");
+        if(h == null){
+            session.setAttribute("input_rent", request.getAttribute("input_rent"));
+            session.setAttribute("input_utilities", request.getAttribute("input_bills"));
+        }else{
+            session.setAttribute("input_rent", h.getRent());
+            session.setAttribute("input_utilities", h.getUtilities());
+        }
+        request.setAttribute("all_regions", rm.getRegions());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("resultCalculator");
         dispatcher.forward(request, response);
     }
 }

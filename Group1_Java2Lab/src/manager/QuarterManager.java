@@ -22,16 +22,8 @@ public class QuarterManager {
     @PersistenceContext
     javax.persistence.EntityManager em;
 
-    @PersistenceContext
-    static javax.persistence.EntityManager sem;
-
     public List<Quarter> getQuarters(){
         TypedQuery<Quarter> myList = em.createQuery("SELECT p FROM Quarter p", Quarter.class);
-        return myList.getResultList();
-    }
-
-    public static List<Quarter> getStaticQuarters(){
-        TypedQuery<Quarter> myList = sem.createQuery("SELECT p FROM Quarter p", Quarter.class);
         return myList.getResultList();
     }
 }

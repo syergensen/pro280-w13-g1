@@ -1,5 +1,9 @@
 package controller;
 
+import manager.HousingManager;
+import manager.QuarterManager;
+
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +22,10 @@ import java.io.IOException;
  */
 @WebServlet(name = "lifeStyle", urlPatterns = {"/lifeStyle"})
 public class LifeStyleServlet extends HttpServlet {
+
+    @EJB
+    HousingManager hm;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -31,8 +39,10 @@ public class LifeStyleServlet extends HttpServlet {
             session.setAttribute(s, request.getAttribute(s));
         }
         for(int i = 1; request.getAttribute("debt" + i) != null; i++){
-            request.setAttribute("debt" + i, "debt" + i);
+            session.setAttribute("debt" + i, "debt" + i);
         }
+        request.setAttribute("all_housing", hm.getHousings());
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/lifeStyle.jsp");
         dispatcher.forward(request, response);
     }

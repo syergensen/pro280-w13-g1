@@ -12,8 +12,8 @@
       <ol>
           <li>
               What is your housing situation?<br>
-              <c:forEach var="myVar" items="Neumont University housing,Live with family or friends for free">
-                  <input type="radio" name="housing_situation" value="${myVar}">${myVar}<br>
+              <c:forEach var="myVar" items="${allhousing}">
+                  <input type="radio" name="housing_situation" value="${myVar}">${myVar.name}<br>
               </c:forEach>
               <input type="radio" name="housing_situation" value="${null}">Renting an apartment or similar<br>
               <table border="1">
@@ -36,8 +36,8 @@
               0<input type="range" name="go_out_to_dinner" min="0" max="7" step="1"/>7
           </li>
           <li>
-              On average, how much do you spend on video games per month?<br>
-              0<input type="range" name="spend_on_video_games" min="0" max="7" step="1"/>200
+              On average, how much do you spend on entertainment per month?<br>
+              0<input type="range" name="spend_on_entertainment" min="0" max="200" step="10"/>200
           </li>
       </ol>
       <input type="submit" value="Next Step">

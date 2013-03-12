@@ -16,7 +16,7 @@
               <li>
                   When did you start attending Neumont:<br>
                   <select name="quarter">
-                      <c:forEach var="myVar" items="<%=QuarterManager.getStaticQuarters()%>">
+                      <c:forEach var="myVar" items="${all_quarters}">
                           <option value="${myVar}">${myVar}Quarter</option>
                       </c:forEach>
                   </select>
@@ -29,7 +29,7 @@
               <li>
                   Which program are you enrolled in:<br>
                   <select name="degree">
-                      <c:forEach var="myVar" items="<%=DegreeManager.getStaticDegrees()%>">
+                      <c:forEach var="myVar" items="${all_degrees}">
                           <option value="${myVar}">${myVar}</option>
                       </c:forEach>
                   </select>
@@ -43,15 +43,12 @@
                   Please select the amount that is paid by loans:<br>
                   0%<input type="range" name="loan-percent" min="0" max="100" step="5"/>100%
               </li>
-              <%
-                  String[][] debtTypes = new String[][]{{"credit card"}, {"medical"}, {"loan", "(school, car)"}};
-                  for(int i = 0; i < debtTypes.length; i++){
-              %>
-              <li>
-                  How much (if any) outstanding <%=debtTypes[i][0]%> debt <%=debtTypes[i].length>1?debtTypes[i][1] + " ":""%>do you have?
-                  <input type="number" name="debt<%=i%>">
-              </li>
-              <%}%>
+              <c:forEach var="myVar" items="${all_debtTypes}">
+                  <li>
+                      How much (if any) outstanding ${myVar.type} do you have?
+                      <input type="number" name="debt${myVar.id}">
+                  </li>
+              </c:forEach>
           </ol>
           <input type="submit" value="Next Step">
       </form>
