@@ -35,7 +35,7 @@ public class ResultCalculator extends HttpServlet
     @EJB
     DegreeRegionSalaryManager degreeRegionSalaryManager;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         HttpSession session = request.getSession();
 
