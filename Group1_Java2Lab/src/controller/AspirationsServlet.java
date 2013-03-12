@@ -32,10 +32,6 @@ public class AspirationsServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession();
         for(String s : new String[]{
                 "input_bills",
@@ -58,4 +54,8 @@ public class AspirationsServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("resultCalculator");
         dispatcher.forward(request, response);
     }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+
 }
