@@ -25,7 +25,7 @@ public class CarManager
 
     public Car findCar(String condition, String quality)
     {
-        TypedQuery<Car> carQuery = em.createQuery("SELECT c FROM Car c WHERE condition = " + condition + ", quality = " + quality, Car.class);
+        TypedQuery<Car> carQuery = em.createQuery("SELECT c FROM Car c WHERE condition = '" + condition + "' AND quality = '" + quality +"'", Car.class);
         return carQuery.getSingleResult();
 
     }
