@@ -17,9 +17,6 @@ public class RegionManager
     @PersistenceContext
     EntityManager em;
 
-    @PersistenceContext
-    static EntityManager sem;
-
     public List<Region> getRegions()
     {
         TypedQuery<Region> regionQuery = em.createQuery("SELECT r FROM Region r", Region.class);
