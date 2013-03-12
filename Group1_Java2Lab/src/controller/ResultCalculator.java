@@ -37,15 +37,26 @@ public class ResultCalculator extends HttpServlet
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
+//        for(String s : new String[]{
+//                "quarter",
+//                "year",
+//                "degree",
+//                "extra-quarter-full",
+//                "extra-quarter-part",
+//                "scholarships",
+//                "interestrate",
+//                "loan-percent"}){
+//            session.setAttribute(s, request.getAttribute(s));
+//        }
         HttpSession session = request.getSession();
 
         //School
-        String startMonth = (String)session.getAttribute("startMonth");
-        Integer startYear = Integer.parseInt((String)session.getAttribute("startYear"));
+        String startMonth = (String)session.getAttribute("quarter");
+        Integer startYear = Integer.parseInt((String)session.getAttribute("year"));
         Degree degree = (Degree)session.getAttribute("degree");
-        Integer expectedFull = Integer.parseInt((String)session.getAttribute("expectedFull"));
-        Integer expectedPart = Integer.parseInt((String)session.getAttribute("expectedPart"));
-        Integer loanPercent = Integer.parseInt((String)session.getAttribute("loanPercent"));
+        Integer expectedFull = Integer.parseInt((String)session.getAttribute("extra-quarter-full"));
+        Integer expectedPart = Integer.parseInt((String)session.getAttribute("extra-quarter-part"));
+        Integer loanPercent = Integer.parseInt((String)session.getAttribute("loan-percent"));
         Double scholarships = Double.parseDouble((String)session.getAttribute("scholarships"));
         Integer interestRate = Integer.parseInt((String)session.getAttribute("interestrate"));
         Double debt1 = Double.parseDouble((String)session.getAttribute("debt1"));
