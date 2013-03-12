@@ -42,14 +42,14 @@
               <li>
                   Please select the amount that is paid by loans:<br>
                   0%<input type="range" name="loan-percent" min="0" max="100" step="5"/>100%
+                  Loan information:<br>
+                  Total amount of grants/scholarships: <input type="number" name="scholarships">
+                  Interest rate percent: <input type="number" name="interestrate">
               </li>
               <c:forEach var="myVar" items="${all_debtTypes}">
                   <li>
                       How much (if any) outstanding ${myVar.type} do you have?
                       <input type="number" name="debt${myVar.id}">
-                      Loan information:<br>
-                      Total amount of grants/scholarships: <input type="number" name="scholarships">
-                      Interest rate: <input type="number" name="interestrate">
                   </li>
               </c:forEach>
           </ol>
