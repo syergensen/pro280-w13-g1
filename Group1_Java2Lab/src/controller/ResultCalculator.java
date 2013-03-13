@@ -136,7 +136,12 @@ public class ResultCalculator extends HttpServlet
             totalprice += (totalrent + totalutilities);
             Double totalloan = totalprice * (loanPercent / 100);
             Double annualrate = interestRate / 1200.0;
-            Double payment = annualrate + (annualrate / (Math.pow(annualrate + 1, 120) - 1)) * totalloan;
+//            Double payment = annualrate + (annualrate / (Math.pow(annualrate + 1, 120) - 1)) * totalloan;
+            Double payment = Math.pow(annualrate + 1, 120);
+            payment -= 1;
+            payment = annualrate / payment;
+            payment += annualrate;
+            payment = payment * totalprice;
             studentloan = payment;
         }
 
