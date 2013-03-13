@@ -183,8 +183,8 @@ public class ResultCalculator extends HttpServlet
 
 //        discretionary = salary - (studentloan + incometax + miscexpenses + carexpenses + mortgage + miscloans + savings);
 
-//        session.setAttribute("salary", salary);
-//        session.setAttribute("studentloan", studentloan);
+        session.setAttribute("salary", salary);
+        session.setAttribute("studentloan", studentloan);
 //        session.setAttribute("incometax", incometax);
 //        session.setAttribute("miscexpenses", miscexpenses);
 //        session.setAttribute("carexpenses", carexpenses);
