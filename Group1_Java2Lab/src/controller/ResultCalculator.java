@@ -73,7 +73,20 @@ public class ResultCalculator extends HttpServlet
 //        //Post-Graduation
         Region region = regionManager.findRegion((String)request.getParameter("region"));
         Car car = carManager.findCar(request.getParameter("car_status"), request.getParameter("car_quality"),request.getParameter("fuel_economy"));
-        Housing housing = housingManager.findHousing((String)request.getParameter("housing"));
+        Double regionHousing;
+        if(request.getParameter("housing").equals("Own"))
+        {
+            regionHousing = region.getHousing();
+        }
+        else if(request.getParameter("housing").equals("Rent"))
+        {
+            regionHousing = region.getRent();
+        }
+        else
+        {
+            regionHousing = 0.0;
+        }
+
         Double carInterest = Double.parseDouble((String)request.getParameter("carinterest"));
 
         DegreeRegionSalary drs = degreeRegionSalaryManager.getDegreeRegionSalary(degree.getId(), region.getId());
