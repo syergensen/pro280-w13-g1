@@ -35,8 +35,6 @@ public class ResultCalculator extends HttpServlet
     @EJB
     RegionManager regionManager;
 
-    Calculator calc;
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
 //        for(String s : new String[]{
@@ -96,18 +94,18 @@ public class ResultCalculator extends HttpServlet
                 car = allCars.get(i);
             }
         }
-        Double regionHousing;
+        Double housingCost;
         if(request.getParameter("housing").equals("Own"))
         {
-            regionHousing = region.getHousing();
+            housingCost = region.getHousing();
         }
         else if(request.getParameter("housing").equals("Rent"))
         {
-            regionHousing = region.getRent();
+            housingCost = region.getRent();
         }
         else
         {
-            regionHousing = 0.0;
+            housingCost = 0.0;
         }
 
         Double carInterest = Double.parseDouble((String)request.getParameter("carinterest"));
@@ -147,83 +145,78 @@ public class ResultCalculator extends HttpServlet
             studentloan = payment;
         }
 
-//        //Income tax
-//        Double firstBracket = 9000 * 0.1;
-//        Double secondBracket = (36000 - 9000) * 0.15;
-//        Double thirdBracket = (degree.getSalary() - 36000) * .25;
-//        incometax = firstBracket + secondBracket + thirdBracket;
-//        incometax = incometax / 12;
-//
-//        // Misc Expenses
-//        Double lunchMonth = lunch * 4.34812;
-//
-//        //Car Expenses High end, Average, Below average
-//        String mpgString = car.getMpg();
-//        Double mpg = 0.0;
-//        if(mpgString.equals("High end"))
-//        {
-//            mpg = 37.0;
-//        }
-//        else if(mpgString.equals("Average"))
-//        {
-//            mpg = 27.5;
-//        }
-//        else
-//        {
-//            mpg = 14.0;
-//        }
-//        Double gasMonth = 1600 / mpg * 3.6;
-//        Double annualCarInterest = carInterest / 1200;
-//        Double carPayment = annualCarInterest + (annualCarInterest / (Math.pow(annualCarInterest + 1, 48) - 1)) * car.getPrice();
-//        carexpenses = gasMonth + carPayment;
+        //Income tax
+        Double firstBracket = 9000 * 0.1;
+        Double secondBracket = (36000 - 9000) * 0.15;
+        Double thirdBracket = (degree.getSalary() - 36000) * .25;
+        incometax = firstBracket + secondBracket + thirdBracket;
+        incometax = incometax / 12;
 
-        //Mortgage/Rent
-//        mortgage = housing.getRent() + housing.getUtilities();
+        // Misc Expenses
+        Double lunchMonth = lunch * 4.34812;
+        Double dinnerMonth = dinner * 4.34812;
+        miscexpenses = lunchMonth + dinnerMonth + entertainment;
+
+        //Car Expenses High end, Average, Below average
+        String mpgString = car.getMpg();
+        Double mpg = 0.0;
+        if(mpgString.equals("High end"))
+        {
+            mpg = 37.0;
+        }
+        else if(mpgString.equals("Average"))
+        {
+            mpg = 27.5;
+        }
+        else
+        {
+            mpg = 14.0;
+        }
+        Double gasMonth = 1600 / mpg * 3.6;
+        Double annualCarInterest = carInterest / 1200;
+        Double carPayment = Math.pow(annualCarInterest + 1, 120);
+        carPayment -= 1;
+        carPayment = annualCarInterest / carPayment;
+        carPayment += annualCarInterest;
+        carPayment = carPayment * car.getPrice();
+        carexpenses = gasMonth + carPayment;
 
         //Misc. Loans
         //to be determined
-        miscloans = 0.0;
+        Double annualDebt1 = 1/1200.0;
+        Double annualDebt2 = 6/1200.0;
+        Double annualDebt3 = 5/1200.0;
 
-        //Savings Act Contribution
-        //to be determined
-        savings = 0.0;
+        Double debt1Loan = Math.pow(annualDebt1 + 1, 12);
+        debt1Loan -= 1;
+        debt1Loan = annualDebt1 / debt1Loan;
+        debt1Loan += annualDebt1;
+        debt1Loan = debt1Loan * debt1;
 
-//        discretionary = salary - (studentloan + incometax + miscexpenses + carexpenses + mortgage + miscloans + savings);
-        Double truncSal = calc.truncate(salary);
-        Integer newSal = truncSal.intValue();
-        Double truncStudLoan = calc.truncate(studentloan);
-        Integer newStudLoan = truncStudLoan.intValue();
+        Double debt2Loan = Math.pow(annualDebt2 + 1, 12);
+        debt2Loan -= 1;
+        debt2Loan = annualDebt2 / debt2Loan;
+        debt2Loan += annualDebt2;
+        debt2Loan = debt2Loan * debt2;
 
-        session.setAttribute("salary", newSal);
-        session.setAttribute("studentloan", newStudLoan);
-//        session.setAttribute("incometax", incometax);
-//        session.setAttribute("miscexpenses", miscexpenses);
-//        session.setAttribute("carexpenses", carexpenses);
-//        session.setAttribute("mortgage", mortgage);
-//        session.setAttribute("miscloans", miscloans);
-//        session.setAttribute("savings", savings);
-//        session.setAttribute("discretionary", discretionary);
+        Double debt3Loan = Math.pow(annualDebt3 + 1, 12);
+        debt3Loan -= 1;
+        debt3Loan = annualDebt3 / debt3Loan;
+        debt3Loan += annualDebt3;
+        debt3Loan = debt3Loan * debt3;
 
+        miscloans = debt1Loan + debt2Loan + debt3Loan;
 
+        discretionary = salary - (studentloan + incometax + miscexpenses + carexpenses + housingCost + miscloans);
 
-
-
-
-//        <body>
-//            Salary.....................${salary}<br>
-//            Student Loan...............${studentloan}<br>
-//            Income Tax.................${incometax}<br>
-//            Misc. Expenses.............${miscexpenses}<br>
-//            Car Expenses...............${carexpenses}<br>
-//            Mortgage/Rent..............${mortgage}<br>
-//            Misc. Loans................${miscloans}<br>
-//            Savings Act Contribution...${savings}<br>
-//        <br>
-//        <br>
-//            Discretionary Income: ${discretionary}
-//        </body>
-
-
+        session.setAttribute("salary", salary);
+        session.setAttribute("studentloan", studentloan);
+        session.setAttribute("incometax", incometax);
+        session.setAttribute("miscexpenses", miscexpenses);
+        session.setAttribute("carexpenses", carexpenses);
+        session.setAttribute("mortgage", housingCost);
+        session.setAttribute("miscloans", miscloans);
+        session.setAttribute("discretionary", discretionary);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/results.jsp");
         dispatcher.forward(request, response);
