@@ -51,32 +51,32 @@ public class ResultCalculator extends HttpServlet
         HttpSession session = request.getSession();
 
         //School
-//        String startMonth = (String)session.getAttribute("quarter");
-//        Integer startYear = Integer.parseInt((String)session.getAttribute("year"));
-////        Degree degree = degreeManager.findDegree((Degree)session.getAttribute("degree"));
-//        Integer expectedFull = Integer.parseInt((String)session.getAttribute("extra-quarter-full"));
-//        Integer expectedPart = Integer.parseInt((String)session.getAttribute("extra-quarter-part"));
-//        Integer loanPercent = Integer.parseInt((String)session.getAttribute("loan-percent"));
-//        Double scholarships = Double.parseDouble((String)session.getAttribute("scholarships"));
-//        Integer interestRate = Integer.parseInt((String)session.getAttribute("interestrate"));
-//        Double debt1 = Double.parseDouble((String)session.getAttribute("debt1"));
-//        Double debt2 = Double.parseDouble((String)session.getAttribute("debt2"));
-//        Double debt3 = Double.parseDouble((String)session.getAttribute("debt3"));
+        String startMonth = (String)session.getAttribute("quarter");
+        Integer startYear = Integer.parseInt((String)session.getAttribute("year"));
+        Degree degree = degreeManager.findDegree((String)session.getAttribute("degree"));
+        Integer expectedFull = Integer.parseInt((String)session.getAttribute("extra-quarter-full"));
+        Integer expectedPart = Integer.parseInt((String)session.getAttribute("extra-quarter-part"));
+        Integer loanPercent = Integer.parseInt((String)session.getAttribute("loan-percent"));
+        Double scholarships = Double.parseDouble((String)session.getAttribute("scholarships"));
+        Integer interestRate = Integer.parseInt((String)session.getAttribute("interestrate"));
+        Double debt1 = Double.parseDouble((String)session.getAttribute("debt1"));
+        Double debt2 = Double.parseDouble((String)session.getAttribute("debt2"));
+        Double debt3 = Double.parseDouble((String)session.getAttribute("debt3"));
 
         //Housing & Lifestyle
-//        Double rent = Double.parseDouble((String)session.getAttribute("rent"));
-//        Double utilities = Double.parseDouble((String)session.getAttribute("utilities"));
-//        Double lunch = Double.parseDouble((String)session.getAttribute("go_out_to_lunch"));
-//        Double dinner = Double.parseDouble((String)session.getAttribute("go_out_to_dinner"));
-//        Double entertainment = Double.parseDouble((String)session.getAttribute("spend_on_entertainment"));
+        Double rent = Double.parseDouble((String)session.getAttribute("rent"));
+        Double utilities = Double.parseDouble((String)session.getAttribute("utilities"));
+        Double lunch = Double.parseDouble((String)session.getAttribute("go_out_to_lunch"));
+        Double dinner = Double.parseDouble((String)session.getAttribute("go_out_to_dinner"));
+        Double entertainment = Double.parseDouble((String)session.getAttribute("spend_on_entertainment"));
 //
 //        //Post-Graduation
-//        Region region = (Region)session.getAttribute("region");
-//        Car car = (Car)session.getAttribute("car");
-//        Housing housing = (Housing)session.getAttribute("housing");
-//        Double payments = Double.parseDouble((String)session.getAttribute("payments"));
+        Region region = regionManager.findRegion((String)request.getParameter("region"));
+        Car car = carManager.findCar(request.getParameter("car_status"), request.getParameter("car_quality"),request.getParameter("fuel_economy"));
+        Housing housing = housingManager.findHousing((String)request.getParameter("housing"));
+        Double carInterest = Double.parseDouble((String)request.getParameter("carinterest"));
 
-//        DegreeRegionSalary drs = degreeRegionSalaryManager.getDegreeRegionSalary(degree.getId(), region.getId());
+        DegreeRegionSalary drs = degreeRegionSalaryManager.getDegreeRegionSalary(degree.getId(), region.getId());
 
         Double salary;
         Double studentloan;

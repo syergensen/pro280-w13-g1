@@ -19,9 +19,9 @@
               <li>
                   What is your housing situation?<br>
                   <c:forEach var="myVar" items="${all_housing}">
-                      <input type="radio" name="housing_situation" value="${myVar}">${myVar.name}<br>
+                      <input type="radio" name="housing_situation" value="${myVar.name}">${myVar.name}<br>
                   </c:forEach>
-                  <input type="radio" name="housing_situation" value="${null}">Renting an apartment or similar<br>
+                  <input type="radio" name="housing_situation" value="Apartment">Renting an apartment or similar<br>
                   <table>
                       <tr>
                           <td>a. How much do you spend monthly for rent?</td>

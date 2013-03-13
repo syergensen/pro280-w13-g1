@@ -28,10 +28,10 @@ public class DegreeManager
         return em.find(Degree.class, id);
     }
 
-    public Degree findDegree(Degree name)
+    public Degree findDegree(String degree)
     {
-        TypedQuery<Degree> degreeQuery = em.createQuery("SELECT d FROM Degree d WHERE d = :name", Degree.class);
-        degreeQuery.setParameter("degree", name.getDegree());
+        TypedQuery<Degree> degreeQuery = em.createQuery("SELECT d FROM Degree d WHERE d.degree = '" + degree + "'", Degree.class);
+//        degreeQuery.setParameter("name", degree);
         return degreeQuery.getSingleResult();
     }
 

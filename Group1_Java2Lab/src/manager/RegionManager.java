@@ -24,7 +24,8 @@ public class RegionManager
 
     public Region findRegion(String name)
     {
-        TypedQuery<Region> regionQuery = em.createQuery("SELECT r FROM Region r WHERE region = '" + name + "'", Region.class);
+        //"SELECT d FROM Degree d WHERE d.degree = '" + degree + "'"
+        TypedQuery<Region> regionQuery = em.createQuery("SELECT r FROM Region r WHERE r.name = '" + name + "'", Region.class);
         return regionQuery.getSingleResult();
     }
 

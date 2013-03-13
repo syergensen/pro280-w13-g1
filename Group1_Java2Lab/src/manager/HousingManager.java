@@ -23,6 +23,13 @@ public class HousingManager
         return housingQuery.getResultList();
     }
 
+    public Housing findHousing(String name)
+    {
+        TypedQuery<Housing> housingQuery = em.createQuery("SELECT h FROM Housing h WHERE h.name = '" + name + "'", Housing.class);
+        return housingQuery.getSingleResult();
+    }
+
+
     public Housing getHousing(Integer id)
     {
         return em.find(Housing.class, id);

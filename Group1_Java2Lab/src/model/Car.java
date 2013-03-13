@@ -15,14 +15,24 @@ public class Car
     @Column(name = "condition", nullable = false, length = 45)
     private String condition;
 
+    @Column(name = "quality", nullable = false)
+    private String quality;
+
     @Column(name = "mpg", nullable = false)
     private Double mpg;
 
     @Column(name = "price", nullable = false)
     private Double price;
 
-    @Column(name = "insurance", nullable = false)
-    private Double insurance;
+
+
+    public String getQuality() {
+        return quality;
+    }
+
+    public void setQuality(String quality) {
+        this.quality = quality;
+    }
 
     public Integer getId() {
         return id;
@@ -54,13 +64,5 @@ public class Car
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public Double getInsurance() {
-        return insurance;
-    }
-
-    public void setInsurance(Double insurance) {
-        this.insurance = insurance;
     }
 }

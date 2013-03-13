@@ -24,7 +24,7 @@
                           <td>
                               <select name="region">
                                   <c:forEach var="myVar" items="${all_regions}">
-                                      <option value="${myVar}">${myVar.name}</option>
+                                      <option value="${myVar.name}">${myVar.name}</option>
                                   </c:forEach>
                               </select>
                           </td>
@@ -49,6 +49,9 @@
                               <c:forEach var="myVar" items="Above average, Average, Below average">
                                   <input type="radio" name="car_quality" value="${myVar}">${myVar} car</option>    <br>
                               </c:forEach>
+                          </td>
+                          <td>
+                              Interest rate:<input type="text" name="carinterest">
                           </td>
                       </tr>
                   </table>
