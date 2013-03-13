@@ -35,6 +35,8 @@ public class ResultCalculator extends HttpServlet
     @EJB
     RegionManager regionManager;
 
+    Calculator calc;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
 //        for(String s : new String[]{
@@ -188,8 +190,8 @@ public class ResultCalculator extends HttpServlet
 
 //        discretionary = salary - (studentloan + incometax + miscexpenses + carexpenses + mortgage + miscloans + savings);
 
-        session.setAttribute("salary", salary);
-        session.setAttribute("studentloan", studentloan);
+        session.setAttribute("salary", calc.truncate(salary));
+        session.setAttribute("studentloan", calc.truncate(studentloan));
 //        session.setAttribute("incometax", incometax);
 //        session.setAttribute("miscexpenses", miscexpenses);
 //        session.setAttribute("carexpenses", carexpenses);

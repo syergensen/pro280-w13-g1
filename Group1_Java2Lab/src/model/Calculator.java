@@ -1,5 +1,7 @@
 package model;
 
+import java.text.DecimalFormat;
+
 /**
  * Created with IntelliJ IDEA.
  * User: sgomez
@@ -28,5 +30,12 @@ public class Calculator {
     // divides a by b
     public Double divide(double a, double b){
         return a / b;
+    }
+
+    public Double truncate(double a){
+        DecimalFormat df = new DecimalFormat("0.##");
+        String d = df.format(a);
+        Double trunc = new Double(d);
+        return trunc.doubleValue();
     }
 }
