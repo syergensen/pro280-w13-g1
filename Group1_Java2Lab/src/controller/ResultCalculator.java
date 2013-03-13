@@ -55,7 +55,7 @@ public class ResultCalculator extends HttpServlet
         Integer startYear = Integer.parseInt((String)session.getAttribute("year"));
         Region region = regionManager.findRegion((String)request.getParameter("region"));
         List<Degree> degrees = degreeManager.getDegrees();
-        Degree degree;
+        Degree degree = new Degree();
 
         for(int i=0;i<degrees.size();i++)
         {
@@ -84,7 +84,7 @@ public class ResultCalculator extends HttpServlet
 
         //Post-Graduation
         List<Car> allCars = carManager.getCars();
-        Car car;
+        Car car = new Car();
         for(int i=0;i<allCars.size();i++)
         {
             if(allCars.get(i).getStatus().equals(request.getParameter("car_status")) &&
@@ -121,39 +121,54 @@ public class ResultCalculator extends HttpServlet
         Double discretionary;
 
         //Salary
-//        salary = drs.getSalary() / 12;
+        salary = degree.getSalary() / 12;
+
+        //Student loan
+        if(loanPercent == 0)
+        {
+            studentloan = 0.0;
+        }
+        else
+        {
+            Double totalprice = degree.getDuration() * 7200.0;
+            Double totalrent = rent / 4.34812 * 100;
+            Double totalutilities = utilities / 4.34812 * 100;
+            totalprice += (totalrent + totalutilities);
+            Double totalloan = totalprice * (loanPercent / 100);
+            Double annualrate = interestRate / 1200.0;
+            Double payment = annualrate + (annualrate / (Math.pow(annualrate + 1, 120) - 1)) * totalloan;
+            studentloan = payment;
+        }
+
+//        //Income tax
+//        Double firstBracket = 9000 * 0.1;
+//        Double secondBracket = (36000 - 9000) * 0.15;
+//        Double thirdBracket = (degree.getSalary() - 36000) * .25;
+//        incometax = firstBracket + secondBracket + thirdBracket;
+//        incometax = incometax / 12;
 //
-//        //Student loan
-//        if(loanPercent == 0)
+//        // Misc Expenses
+//        Double lunchMonth = lunch * 4.34812;
+//
+//        //Car Expenses High end, Average, Below average
+//        String mpgString = car.getMpg();
+//        Double mpg = 0.0;
+//        if(mpgString.equals("High end"))
 //        {
-//            studentloan = 0.0;
+//            mpg = 37.0;
+//        }
+//        else if(mpgString.equals("Average"))
+//        {
+//            mpg = 27.5;
 //        }
 //        else
 //        {
-//            Double totalprice = degree.getDuration() * 7200.0;
-//            Double totalrent = rent / 4.34812 * 100;
-//            Double totalutilities = utilities / 4.34812 * 100;
-//            totalprice += (totalrent + totalutilities);
-//            Double totalloan = totalprice * (loanPercent / 100);
-//            Double annualrate = interestRate / 1200.0;
-//            Double payment = annualrate + (annualrate / (Math.pow(annualrate + 1, 120) - 1)) * totalloan;
-//            studentloan = payment;
+//            mpg = 14.0;
 //        }
-
-        //Income tax
-//        Double firstBracket = 9000 * 0.1;
-//        Double secondBracket = (36000 - 9000) * 0.15;
-//        Double thirdBracket = (drs.getSalary() - 36000) * .25;
-//        incometax = firstBracket + secondBracket + thirdBracket;
-//        incometax = incometax / 12;
-
-        // Misc Expenses
-//        Double lunchMonth = lunch * 4.34812;\
-
-        //Car Expenses
-//        Double mpg = car.getMpg();
 //        Double gasMonth = 1600 / mpg * 3.6;
-//        carexpenses = gasMonth + payments;
+//        Double annualCarInterest = carInterest / 1200;
+//        Double carPayment = annualCarInterest + (annualCarInterest / (Math.pow(annualCarInterest + 1, 48) - 1)) * car.getPrice();
+//        carexpenses = gasMonth + carPayment;
 
         //Mortgage/Rent
 //        mortgage = housing.getRent() + housing.getUtilities();
