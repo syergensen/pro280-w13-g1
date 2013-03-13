@@ -12,6 +12,7 @@
         <class>model.Housing</class>
         <class>model.Misc</class>
         <class>model.Region</class>
+        <class>model.DegreeRegionId</class>
         <properties>
             <!--<property name="toplink.cache.shared.default" value="false"/>-->
             <property name="toplink.logging.level" value="FINE" />

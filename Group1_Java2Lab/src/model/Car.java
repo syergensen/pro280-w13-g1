@@ -12,19 +12,17 @@ public class Car
     @Column(name = "id", nullable = false, length = 11)
     private Integer id;
 
-    @Column(name = "condition", nullable = false, length = 45)
-    private String condition;
+    @Column(name = "status", nullable = false, length = 45)
+    private String status;
 
     @Column(name = "quality", nullable = false)
     private String quality;
 
     @Column(name = "mpg", nullable = false)
-    private Double mpg;
+    private String mpg;
 
     @Column(name = "price", nullable = false)
     private Double price;
-
-
 
     public String getQuality() {
         return quality;
@@ -42,19 +40,19 @@ public class Car
         this.id = id;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getStatus() {
+        return status;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setStatus(String condition) {
+        this.status = condition;
     }
 
-    public Double getMpg() {
+    public String getMpg() {
         return mpg;
     }
 
-    public void setMpg(Double mpg) {
+    public void setMpg(String mpg) {
         this.mpg = mpg;
     }
 

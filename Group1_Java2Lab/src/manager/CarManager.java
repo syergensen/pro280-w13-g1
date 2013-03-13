@@ -7,6 +7,12 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -21,13 +27,6 @@ public class CarManager
     {
         TypedQuery<Car> carQuery = em.createQuery("SELECT c FROM Car c", Car.class);
         return carQuery.getResultList();
-    }
-
-    public Car findCar(String condition, String quality, String mpg)
-    {
-        TypedQuery<Car> carQuery = em.createQuery("SELECT c FROM Car c WHERE c.condition = '" + condition + "', c.quality = '" + quality +"', c.mpg = '" + mpg + "'", Car.class);
-        return carQuery.getSingleResult();
-
     }
 
     public Car getCar(Integer id)

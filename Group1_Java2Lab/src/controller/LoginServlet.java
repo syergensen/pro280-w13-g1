@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
     private static final String DUMMY_PASSWORD = "dummypassword";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        try{
+        try{
             // grabs the users username and role to authenticate their login
             String username = request.getParameter("username");
             String role = request.getParameter("role");
@@ -56,10 +56,9 @@ public class LoginServlet extends HttpServlet {
             request.logout();
             request.login(username, DUMMY_PASSWORD);
             response.sendRedirect(request.getContextPath());
-//        }catch(ServletException e){
-//            // if the user logs in incorrectly, redirect the user to an error page to let them know
-//
-//            request.getRequestDispatcher("/WEB-INF/login/login_error.jsp").forward(request, response);
-//         }
+        }catch(ServletException e){
+            // if the user logs in incorrectly, redirect the user to an error page to let them know
+            request.getRequestDispatcher("/WEB-INF/login/login_error.jsp").forward(request, response);
+         }
     }
 }

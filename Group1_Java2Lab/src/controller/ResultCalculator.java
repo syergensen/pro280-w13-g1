@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "ResultCalculator", urlPatterns = {"/result/calculate"},
         initParams =
@@ -32,8 +33,6 @@ public class ResultCalculator extends HttpServlet
     MiscManager miscManager;
     @EJB
     RegionManager regionManager;
-    @EJB
-    DegreeRegionSalaryManager degreeRegionSalaryManager;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
@@ -64,7 +63,7 @@ public class ResultCalculator extends HttpServlet
         Double debt3 = Double.parseDouble((String)session.getAttribute("debt3"));
 
         //Housing & Lifestyle
-        Double rent = Double.parseDouble((String)session.getAttribute("rent"));
+        Double rent = Double.parseDouble((String) session.getAttribute("rent"));
         Double utilities = Double.parseDouble((String)session.getAttribute("utilities"));
         Double lunch = Double.parseDouble((String)session.getAttribute("go_out_to_lunch"));
         Double dinner = Double.parseDouble((String)session.getAttribute("go_out_to_dinner"));
@@ -72,7 +71,17 @@ public class ResultCalculator extends HttpServlet
 //
 //        //Post-Graduation
         Region region = regionManager.findRegion((String)request.getParameter("region"));
-        Car car = carManager.findCar(request.getParameter("car_status"), request.getParameter("car_quality"),request.getParameter("fuel_economy"));
+        List<Car> allCars = carManager.getCars();
+        Car car;
+        for(int i=0;i<allCars.size();i++)
+        {
+            if(allCars.get(i).getStatus().equals(request.getParameter("car_status")) &&
+               allCars.get(i).getQuality().equals(request.getParameter("car_quality")) &&
+               allCars.get(i).getMpg().equals(request.getParameter("fuel_economy")))
+            {
+                car = allCars.get(i);
+            }
+        }
         Double regionHousing;
         if(request.getParameter("housing").equals("Own"))
         {
@@ -88,8 +97,6 @@ public class ResultCalculator extends HttpServlet
         }
 
         Double carInterest = Double.parseDouble((String)request.getParameter("carinterest"));
-
-        DegreeRegionSalary drs = degreeRegionSalaryManager.getDegreeRegionSalary(degree.getId(), region.getId());
 
         Double salary;
         Double studentloan;

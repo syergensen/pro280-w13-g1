@@ -35,9 +35,13 @@
                   <li>
                       Which program are you enrolled in:<br>
                       <select name="degree">
-                          <c:forEach var="myVar" items="${all_degrees}">
-                              <option value="${myVar}">${myVar}</option>
-                          </c:forEach>
+                          <%--<c:forEach var="myVar" items="${all_degrees}">--%>
+                              <%--<option value="${myVar}">${myVar}</option>--%>
+                          <%--</c:forEach>--%>
+                              <option value="BSCS">BSCS</option>
+                              <option value="BSGD">BSGD</option>
+                              <option value="BSTM">BSTM</option>
+                              <option value="BSWD">BSWD</option>
                       </select>
                   </li>
                   <li>

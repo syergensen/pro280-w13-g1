@@ -22,7 +22,7 @@ public class Region
     @Column(name = "housing", nullable = false)
     private Double housing;
 
-    @OneToMany(mappedBy = "region")
+    @OneToMany(mappedBy = "region_id")
     private List<DegreeRegionSalary> degreeRegionSalaries;
 
     public Integer getId() {
