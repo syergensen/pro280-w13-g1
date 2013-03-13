@@ -52,7 +52,19 @@ public class ResultCalculator extends HttpServlet
         //School
         String startMonth = (String)session.getAttribute("quarter");
         Integer startYear = Integer.parseInt((String)session.getAttribute("year"));
-        Degree degree = degreeManager.findDegree((String)session.getAttribute("degree"));
+        Region region = regionManager.findRegion((String)request.getParameter("region"));
+        List<Degree> degrees = degreeManager.getDegrees();
+        Degree degree;
+
+        for(int i=0;i<degrees.size();i++)
+        {
+            if(degrees.get(i).getDegree().equals(session.getAttribute("degree")) &&
+               degrees.get(i).getRegion().equals(request.getParameter("region")))
+            {
+                degree = degrees.get(i);
+            }
+        }
+
         Integer expectedFull = Integer.parseInt((String)session.getAttribute("extra-quarter-full"));
         Integer expectedPart = Integer.parseInt((String)session.getAttribute("extra-quarter-part"));
         Integer loanPercent = Integer.parseInt((String)session.getAttribute("loan-percent"));
@@ -70,7 +82,7 @@ public class ResultCalculator extends HttpServlet
         Double entertainment = Double.parseDouble((String)session.getAttribute("spend_on_entertainment"));
 //
 //        //Post-Graduation
-        Region region = regionManager.findRegion((String)request.getParameter("region"));
+
         List<Car> allCars = carManager.getCars();
         Car car;
         for(int i=0;i<allCars.size();i++)

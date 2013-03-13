@@ -19,6 +19,12 @@ public class Degree
     @Column(name = "duration", nullable = false)
     private Integer duration;
 
+    @Column(name = "region", nullable = false)
+    private String region;
+
+    @Column(name = "salary", nullable = false)
+    private Double salary;
+
 //    @OneToMany(mappedBy = "degree")
 //    private List<DegreeRegionSalary> degreeRegionSalaries;
 
@@ -44,6 +50,22 @@ public class Degree
 
     public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
     }
 
     public String toString(){
