@@ -4,6 +4,7 @@ import manager.*;
 import model.*;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -14,11 +15,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ResultCalculator", urlPatterns = {"/result/calculate"},
+@WebServlet(name = "ResultCalculator", urlPatterns = {"/results"},
         initParams =
                 {
-                        @WebInitParam(name = "success", value = "/WEB-INF/results.jsp"),
-                        @WebInitParam(name = "failure", value = "/WEB-INF/aspirations.jsp")})
+                        @WebInitParam(name = "success", value = "WEB-INF/results.jsp"),
+                        @WebInitParam(name = "failure", value = "WEB-INF/aspirations.jsp")})
 public class ResultCalculator extends HttpServlet
 {
     @EJB
@@ -80,9 +81,8 @@ public class ResultCalculator extends HttpServlet
         Double lunch = Double.parseDouble((String)session.getAttribute("go_out_to_lunch"));
         Double dinner = Double.parseDouble((String)session.getAttribute("go_out_to_dinner"));
         Double entertainment = Double.parseDouble((String)session.getAttribute("spend_on_entertainment"));
-//
-//        //Post-Graduation
 
+        //Post-Graduation
         List<Car> allCars = carManager.getCars();
         Car car;
         for(int i=0;i<allCars.size();i++)
@@ -122,8 +122,8 @@ public class ResultCalculator extends HttpServlet
 
         //Salary
 //        salary = drs.getSalary() / 12;
-
-        //Student loan
+//
+//        //Student loan
 //        if(loanPercent == 0)
 //        {
 //            studentloan = 0.0;
@@ -199,7 +199,8 @@ public class ResultCalculator extends HttpServlet
 
 
 
-        request.getRequestDispatcher(getServletConfig().getInitParameter("success")).forward(request, response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/results.jsp");
+        dispatcher.forward(request, response);
 
     }
 

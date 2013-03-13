@@ -35,7 +35,6 @@ public class SchoolServlet extends javax.servlet.http.HttpServlet {
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
         request.setAttribute("all_quarters", qm.getQuarters());
-//        request.setAttribute("all_degrees", dm.getDegrees());
         request.setAttribute("all_debtTypes", dtm.getDebtTypes());
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/school.jsp");
         dispatcher.forward(request, response);

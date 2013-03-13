@@ -15,7 +15,7 @@
   </div>
   <div id="content">
       <h1>In order to provide more accurate results we would like to know more about your aspirations, things that you desire to have after graduation:</h1>
-      <form action="result/calculate" method="post">
+      <form action="results" method="post">
           <ol>
               <li>
                   After graduating Neumont what is your preferred region to live in the United States:
