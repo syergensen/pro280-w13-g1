@@ -32,6 +32,7 @@ public class Calculator {
         return a / b;
     }
 
+    // truncates large decimal values to two decimal places
     public Double truncate(double a){
         DecimalFormat df = new DecimalFormat("0.##");
         String d = df.format(a);

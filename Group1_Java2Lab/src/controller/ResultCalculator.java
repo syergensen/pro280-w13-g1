@@ -189,9 +189,13 @@ public class ResultCalculator extends HttpServlet
         savings = 0.0;
 
 //        discretionary = salary - (studentloan + incometax + miscexpenses + carexpenses + mortgage + miscloans + savings);
+        Double truncSal = calc.truncate(salary);
+        Integer newSal = truncSal.intValue();
+        Double truncStudLoan = calc.truncate(studentloan);
+        Integer newStudLoan = truncStudLoan.intValue();
 
-        session.setAttribute("salary", calc.truncate(salary));
-        session.setAttribute("studentloan", calc.truncate(studentloan));
+        session.setAttribute("salary", newSal);
+        session.setAttribute("studentloan", newStudLoan);
 //        session.setAttribute("incometax", incometax);
 //        session.setAttribute("miscexpenses", miscexpenses);
 //        session.setAttribute("carexpenses", carexpenses);
