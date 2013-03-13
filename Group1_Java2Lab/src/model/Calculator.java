@@ -35,6 +35,7 @@ public class Calculator {
     public Double truncate(double a){
         DecimalFormat df = new DecimalFormat("0.##");
         String d = df.format(a);
+        d = d.replaceAll(",", ".");
         Double trunc = new Double(d);
         return trunc.doubleValue();
     }
