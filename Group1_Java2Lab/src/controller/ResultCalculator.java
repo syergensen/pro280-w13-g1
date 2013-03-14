@@ -40,18 +40,30 @@ public class ResultCalculator extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         HttpSession session = request.getSession();
+        if(request.getParameter("region") != null)
+        {
+            session.setAttribute("region", request.getParameter("region"));
+        }
+
 
         //School
         String startMonth = (String)session.getAttribute("quarter");
         Integer startYear = Integer.parseInt((String)session.getAttribute("year"));
-        Region region = regionManager.findRegion((String)request.getParameter("region"));
+        Region region = regionManager.findRegion((String)session.getAttribute("region"));
         List<Degree> degrees = degreeManager.getDegrees();
         Degree degree = new Degree();
+
+        String regionName = request.getParameter("region");
+
+        if(regionName != null)
+        {
+            session.setAttribute("regionName", regionName);
+        }
 
         for(int i=0;i<degrees.size();i++)
         {
             if(degrees.get(i).getDegree().equals(session.getAttribute("degree")) &&
-               degrees.get(i).getRegion().equals(request.getParameter("region")))
+               degrees.get(i).getRegion().equals(session.getAttribute("regionName")))
             {
                 degree = degrees.get(i);
             }
@@ -75,7 +87,7 @@ public class ResultCalculator extends HttpServlet
         }
         else
         {
-            extraQuarter = Double.parseDouble((String)session.getAttribute("extraQuarter"));
+            extraQuarter = (Double)session.getAttribute("extraQuarter");
         }
 
         Integer loanPercent = Integer.parseInt((String)session.getAttribute("loan-percent"));
@@ -98,26 +110,45 @@ public class ResultCalculator extends HttpServlet
         String carQual = request.getParameter("car_quality");
         String carMPG = request.getParameter("fuel_economy");
 
+        if(carStat != null && carQual != null && carMPG != null)
+        {
+            session.setAttribute("car_status", carStat);
+            session.setAttribute("car_quality", carQual);
+            session.setAttribute("fuel_economy", carMPG);
+        }
+
+
+
+
         Car car = new Car();
         for(int i=0;i<allCars.size();i++)
         {
-            if(allCars.get(i).getStatus().equals(carStat) &&
-               allCars.get(i).getQuality().equals(carQual) &&
-               allCars.get(i).getMpg().equals(carMPG))
+            if(allCars.get(i).getStatus().equals((String)session.getAttribute("car_status")))
             {
-                car.setId(allCars.get(i).getId());
-                car.setStatus(allCars.get(i).getStatus());
-                car.setQuality(allCars.get(i).getQuality());
-                car.setMpg(allCars.get(i).getMpg());
-                car.setPrice(allCars.get(i).getPrice());
+                if(allCars.get(i).getQuality().equals((String)session.getAttribute("car_quality")))
+                {
+                    if(allCars.get(i).getMpg().equals((String)session.getAttribute("fuel_economy")))
+                    {
+                        car.setId(allCars.get(i).getId());
+                        car.setStatus(allCars.get(i).getStatus());
+                        car.setQuality(allCars.get(i).getQuality());
+                        car.setMpg(allCars.get(i).getMpg());
+                        car.setPrice(allCars.get(i).getPrice());
+                    }
+                }
             }
         }
         Double housingCost;
-        if(request.getParameter("housing").equals("Own"))
+        String house = request.getParameter("housing");
+        if(house != null)
+        {
+            session.setAttribute("housing", house);
+        }
+        if(session.getAttribute("housing").equals("Own"))
         {
             housingCost = region.getHousing();
         }
-        else if(request.getParameter("housing").equals("Rent"))
+        else if(session.getAttribute("housing").equals("Rent"))
         {
             housingCost = region.getRent();
         }
@@ -126,7 +157,25 @@ public class ResultCalculator extends HttpServlet
             housingCost = 0.0;
         }
 
-        Double carInterest = Double.parseDouble((String)request.getParameter("carinterest"));
+        Double carInterest;
+        if(request.getParameter("carinterest") == null)
+        {
+            carInterest = (Double)session.getAttribute("carInterest");
+
+        }
+        else
+        {
+            carInterest = Double.parseDouble(request.getParameter("carinterest"));
+        }
+
+        if(carInterest != null)
+        {
+            session.setAttribute("carInterest", carInterest);
+        }
+        if(session.getAttribute("carInterest") != null)
+        {
+            carInterest = (Double)session.getAttribute("carInterest");
+        }
 
         Double salary;
         Double studentloan;
@@ -159,7 +208,7 @@ public class ResultCalculator extends HttpServlet
             payment -= 1;
             payment = annualrate / payment;
             payment += annualrate;
-            payment = payment * totalprice;
+            payment = payment * totalloan;
             studentloan = payment;
         }
 

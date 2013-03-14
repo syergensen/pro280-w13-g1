@@ -6,27 +6,28 @@
     <script type="text/javascript" src="./resources/scripts/script.js"></script>
 </head>
 <body>
-<form action="addquarter" method="post">
-    <input type="submit" name="quarter" value="+1 Quarter">
-</form>
-<form action="print" method="get">
-    <input type="submit" name="printform" value="Print">
-</form>
 <div id="header">
     <jsp:include page="header/header.jsp"/>
 </div>
-    <div id="content">
-        Salary.....................${salary}<br>
-        Student Loan...............${studentloan}<br>
-        Income Tax.................${incometax}<br>
-        Misc. Expenses.............${miscexpenses}<br>
-        Car Expenses...............${carexpenses}<br>
-        Mortgage/Rent..............${mortgage}<br>
-        Misc. Loans................${miscloans}<br>
-        Savings Act Contribution...${savings}<br>
-        <br>
-        <br>
-        Discretionary Income: ${discretionary}
+<div id="content">
+    <form action="addquarter" method="post">
+        <input type="submit" name="quarter" value="+1 Quarter">
+    </form>
+    <form action="print" method="get">
+        <input type="submit" name="printform" value="Print Results">
+    </form>
+    <div id="results">
+            Salary.....................${salary}<br>
+            Student Loan...............${studentloan}<br>
+            Income Tax.................${incometax}<br>
+            Misc. Expenses.............${miscexpenses}<br>
+            Car Expenses...............${carexpenses}<br>
+            Mortgage/Rent..............${mortgage}<br>
+            Misc. Loans................${miscloans}<br>
+            <br>
+            <br>
+            Discretionary Income: ${discretionary}
+        </div>
     </div>
 </body>
 </html>

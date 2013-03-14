@@ -10,6 +10,6 @@
         <li><a href="school">School</a></li>
         <li><a href="lifeStyle">Housing & Lifestyle</a></li>
         <li><a href="aspirations">Aspirations</a></li>
-        <li><a href="result/calculate">Results</a></li>
+        <li><a href="results">Results</a></li>
     </ul>
 </nav>

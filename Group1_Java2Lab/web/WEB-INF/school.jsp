@@ -7,7 +7,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title></title>
+    <title>NUBA - School</title>
       <link href="./resources/styles/stylesheet.css" rel="stylesheet" type="text/css" />
       <script type="text/javascript" src="./resources/scripts/script.js"></script>
   </head>
@@ -46,21 +46,21 @@
                   </li>
                   <li>
                       How many additional quarters do you expect to attend Neumont:<br>
-                      Full-time: <input type="number" name="extra-quarter-full" required = "required"/>
-                      Part-time: <input type="number" name="extra-quarter-part" required = "required"/>
+                      Full-time: <input type="text" name="extra-quarter-full" required = "required"/>
+                      Part-time: <input type="text" name="extra-quarter-part" required = "required"/>
                   </li>
+                  <h3><b>Loan Information:</b></h3>
                   <li>
                       Please select the amount that is paid by loans:<br>
                       0%<input type="range" name="loan-percent" min="0" max="100" step="5" onchange="getRangeValues(this.value)"/>100%
-                      <br>
-                      Loan information:<br>
-                      Total amount of grants/scholarships: $<input type="number" name="scholarships" required = "required">
-                      Interest rate percent: <input type="number" name="interestrate" required = "required"> %
+                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                      Interest rate percent: <input type="number" name="interestrate" required = "required"> %   <br>
+                      Total amount of grants/scholarships: $<input type="text" name="scholarships" required = "required">
                   </li>
                   <c:forEach var="myVar" items="${all_debtTypes}">
                       <li>
-                          How much (if any) outstanding ${myVar.type} do you have?
-                          $<input type="number" name="debt${myVar.id}" required = "required">
+                          How much (if any) outstanding ${myVar.type} debt do you have?
+                          $<input type="text" name="debt${myVar.id}" required = "required">
                       </li>
                   </c:forEach>
               </ol>

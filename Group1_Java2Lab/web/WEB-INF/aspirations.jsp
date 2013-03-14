@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title></title>
+    <title>NUBA - Post-Graduation</title>
       <link href="./resources/styles/stylesheet.css" rel="stylesheet" type="text/css" />
       <script type="text/javascript" src="./resources/scripts/script.js"></script>
   </head>
@@ -14,7 +14,7 @@
       <jsp:include page="header/header.jsp"/>
   </div>
   <div id="content">
-      <h1>In order to provide more accurate results we would like to know more about your aspirations, things that you desire to have after graduation:</h1>
+      <h2>In order to provide more accurate results we would like to know more about your aspirations, things that you desire to have after graduation:</h2>
       <form action="results" method="post">
           <ol>
               <li>
@@ -36,22 +36,22 @@
                   <table>
                       <tr>
                           <td>
-                              <c:forEach var="myVar" items="New, Used">
-                                  <input type="radio" name="car_status" value="${myVar}" checked>${myVar} car</option> <br>
+                              <c:forEach var="myVar" items="New,Used">
+                                  <input type="radio" name="car_status" value="${myVar}">${myVar} car</option> <br>
                               </c:forEach>
                           </td>
                           <td>
-                              <c:forEach var="myVar" items="High end, Average, Below average">
-                                  <input type="radio" name="fuel_economy" value="${myVar}" checked>${myVar} fuel economy</option>     <br>
+                              <c:forEach var="myVar" items="High end,Average,Below average">
+                                  <input type="radio" name="fuel_economy" value="${myVar}">${myVar} fuel economy</option> <br>
                               </c:forEach>
                           </td>
                           <td>
-                              <c:forEach var="myVar" items="Above average, Average, Below average">
-                                  <input type="radio" name="car_quality" value="${myVar}" checked>${myVar} car</option>    <br>
+                              <c:forEach var="myVar" items="Above average,Average,Below average">
+                                  <input type="radio" name="car_quality" value="${myVar} car">${myVar} car</option> <br>
                               </c:forEach>
                           </td>
                           <td>
-                              Interest rate:<input type="number" name="carinterest" required = "required">
+                              Interest rate:<input type="text" name="carinterest" required = "required">
                           </td>
                       </tr>
                   </table>
