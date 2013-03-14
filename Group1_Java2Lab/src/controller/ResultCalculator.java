@@ -39,17 +39,6 @@ public class ResultCalculator extends HttpServlet
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
-//        for(String s : new String[]{
-//                "quarter",
-//                "year",
-//                "degree",
-//                "extra-quarter-full",
-//                "extra-quarter-part",
-//                "scholarships",
-//                "interestrate",
-//                "loan-percent"}){
-//            session.setAttribute(s, request.getAttribute(s));
-//        }
         HttpSession session = request.getSession();
 
         //School
@@ -70,6 +59,25 @@ public class ResultCalculator extends HttpServlet
 
         Integer expectedFull = Integer.parseInt((String)session.getAttribute("extra-quarter-full"));
         Integer expectedPart = Integer.parseInt((String)session.getAttribute("extra-quarter-part"));
+
+        Double extraQuarter = 0.0;
+        if(session.getAttribute("extraQuarter") == null)
+        {
+            if(expectedFull != null)
+            {
+                extraQuarter += expectedFull;
+            }
+            if(expectedPart != null)
+            {
+                extraQuarter += (expectedPart/2);
+            }
+            session.setAttribute("extraQuarter", extraQuarter);
+        }
+        else
+        {
+            extraQuarter = Double.parseDouble((String)session.getAttribute("extraQuarter"));
+        }
+
         Integer loanPercent = Integer.parseInt((String)session.getAttribute("loan-percent"));
         Double scholarships = Double.parseDouble((String)session.getAttribute("scholarships"));
         Integer interestRate = Integer.parseInt((String)session.getAttribute("interestrate"));
@@ -140,10 +148,10 @@ public class ResultCalculator extends HttpServlet
         }
         else
         {
-            Double totalprice = degree.getDuration() * 7200.0;
+            Double totalprice = (degree.getDuration() + extraQuarter) * 7200.0;
             Double totalrent = rent / 4.34812 * 100;
             Double totalutilities = utilities / 4.34812 * 100;
-            totalprice += (totalrent + totalutilities);
+            totalprice += (totalrent + totalutilities - scholarships);
             Double totalloan = totalprice * (loanPercent / 100);
             Double annualrate = interestRate / 1200.0;
 //            Double payment = annualrate + (annualrate / (Math.pow(annualrate + 1, 120) - 1)) * totalloan;
