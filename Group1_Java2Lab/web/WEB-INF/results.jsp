@@ -34,9 +34,9 @@
                         <h3>Misc. Loans................${miscloans}/month</h3>
                         <br>
                         <h3>Discretionary Income: ${discretionary}/month</h3>
-                        <form action="print" method="get">
-                            <input id="printButton" type="submit" name="printform" value="Print Results">
-                        </form>
+                        <%--<form action="print" method="get">--%>
+                            <%--<input id="printButton" type="submit" name="printform" value="Print Results">--%>
+                        <%--</form>--%>
                     </div>
                 </div>
             </div>
