@@ -7,7 +7,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>NUBA - School</title>
+    <title></title>
       <link href="./resources/styles/stylesheet.css" rel="stylesheet" type="text/css" />
       <script type="text/javascript" src="./resources/scripts/script.js"></script>
   </head>
@@ -16,7 +16,7 @@
       <jsp:include page="header/header.jsp"/>
   </div>
     <div id="content">
-          <h2>Please answer the following questions about your school and funding:</h2>
+          <h1>Please answer the following questions about your school and funding:</h1>
           <form action="lifeStyle" method="post">
               <ol>
                   <li>
@@ -27,7 +27,7 @@
                           </c:forEach>
                       </select>
                       <select name="year">
-                          <c:forEach var="myVar" begin="2009" end="<%=(new GregorianCalendar()).get(GregorianCalendar.YEAR)%>">
+                          <c:forEach var="myVar" begin="2003" end="<%=(new GregorianCalendar()).get(GregorianCalendar.YEAR)%>">
                               <option value="${myVar}">${myVar}</option>
                           </c:forEach>
                       </select>
@@ -35,6 +35,9 @@
                   <li>
                       Which program are you enrolled in:<br>
                       <select name="degree">
+                          <%--<c:forEach var="myVar" items="${all_degrees}">--%>
+                              <%--<option value="${myVar}">${myVar}</option>--%>
+                          <%--</c:forEach>--%>
                               <option value="BSCS">BSCS</option>
                               <option value="BSGD">BSGD</option>
                               <option value="BSTM">BSTM</option>
@@ -43,21 +46,21 @@
                   </li>
                   <li>
                       How many additional quarters do you expect to attend Neumont:<br>
-                      Full-time: <input type="text" name="extra-quarter-full"/>
-                      Part-time: <input type="text" name="extra-quarter-part"/>
+                      Full-time: <input type="number" name="extra-quarter-full" required = "required"/>
+                      Part-time: <input type="number" name="extra-quarter-part" required = "required"/>
                   </li>
-                  <h3>Loan information:</h3>
                   <li>
                       Please select the amount that is paid by loans:<br>
                       0%<input type="range" name="loan-percent" min="0" max="100" step="5" onchange="getRangeValues(this.value)"/>100%
-                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                      Interest rate percent: <input type="number" name="interestrate"> %   <br>
-                      Total amount of grants/scholarships: $<input type="text" name="scholarships">
+                      <br>
+                      Loan information:<br>
+                      Total amount of grants/scholarships: $<input type="number" name="scholarships" required = "required">
+                      Interest rate percent: <input type="number" name="interestrate" required = "required"> %
                   </li>
                   <c:forEach var="myVar" items="${all_debtTypes}">
                       <li>
-                          How much (if any) outstanding ${myVar.type} debt do you have?
-                          $<input type="text" name="debt${myVar.id}">
+                          How much (if any) outstanding ${myVar.type} do you have?
+                          $<input type="number" name="debt${myVar.id}" required = "required">
                       </li>
                   </c:forEach>
               </ol>
