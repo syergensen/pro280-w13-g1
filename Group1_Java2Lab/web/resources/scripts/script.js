@@ -8,6 +8,6 @@ $(document).ready(function() {
     });
 
     function getRangeValues(val){
-        document.getElementsById('rangeInput').value = val;
+        document.getElementById('rangeInput').value = val;
     }
 })

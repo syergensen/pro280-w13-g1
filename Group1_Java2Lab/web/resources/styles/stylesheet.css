@@ -1,8 +1,9 @@
 body {
     margin: 0;
   	padding: 0;
-    font-family: Georgia;
+    font-family: Georgia, "Times New Roman", Times, serif;
     font-size: 13px;
+    background-color: #000000;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -10,7 +11,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
-.neumont_logo img{
+#neumont_logo img{
     height: 100px;
     width: 400px;
 }
@@ -19,39 +20,41 @@ nav ul {
     margin: 0;
     padding: 0;
     list-style: none;
-  	background-color: #000000;
   	height: 30px;
 }
 
 nav ul li {
-    padding: 3px 45px;
+    padding: 1px 30px;
   	margin: 1px;
     display: block;
   	float: left;
+    color: #ffffff;
 }
 
 nav ul li a, a:link {
   	text-decoration: none;
+    text-transform: uppercase;
     color: #ffcc00;
-  	font-size: 19px;
+  	font-size: 13px;
   	font-family: Verdana;
+    font-weight: bold;
 }
 
-nav ul li a:hover {
+nav ul li a:hover, a:active {
     color: #ffffff;
 }
 
-nav ul li.highlight {
-    background-color: #ffffff;
-}
+/*nav ul li.highlight {*/
+    /*background-color: #ffffff;*/
+/*}*/
 
-.logout {
-    float: right;
-}
+/*#logout {*/
+    /*float: right;*/
+/*}*/
 
-.logout a{
-    font-size: 13px;
-}
+/*#logout a{*/
+    /*font-size: 13px;*/
+/*}*/
 
 .terms_box {
     border: 2px solid #000000;
@@ -77,6 +80,17 @@ nav ul li.highlight {
     top: 20px;
 }
 
+#printButton {
+    font-size: 15px;
+    left: 100px;
+    top: 500px;
+    height: 25px;
+}
+
+#quarterButton {
+    font-size: 15px;
+}
+
 #header {
     position: relative;
     margin: 0 auto;
@@ -84,15 +98,34 @@ nav ul li.highlight {
 }
 
 #content {
-    position: relative;
     margin: 0 auto;
-  	padding: 20px;
-    width: 900px;
-  	background-color: #cccccc;
+    width: 925px;
+    padding-top: 10px;
+    padding-bottom: 30px;
 }
+
+#content_wrapper1 {
+    background-color: #dfdfdf;
+}
+
+/*#content_wrapper2 {*/
+    /*background: url(./resources/images/bg-side.jpg) no-repeat transparent center top;*/
+    /*min-height: 809px;*/
+    /*max-width: 100%;*/
+/*}*/
 
 #results {
     position: relative;
+    left: 300px;
+    top: 40px;
+}
+
+#footer {
+    font-size: 12px;
+    color: #656565;
+    padding: 20px 0;
+    margin: 0 auto;
+    width: 700px;
 }
 
 
