@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title></title>
+    <title>NUBA - Lifestyle</title>
       <link href="./resources/styles/stylesheet.css" rel="stylesheet" type="text/css" />
       <script type="text/javascript" src="./resources/scripts/script.js"></script>
   </head>
@@ -13,7 +13,7 @@
       <jsp:include page="header/header.jsp"/>
   </div>
   <div id="content">
-      <h1>These questions will focus on the housing and lifestyle choices while still in school.</h1>
+      <h2>These questions will focus on the housing and lifestyle choices while still in school.</h2>
       <form action="aspirations" method="post">
           <ol>
               <li>

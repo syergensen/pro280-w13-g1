@@ -35,6 +35,8 @@ public class ResultCalculator extends HttpServlet
     @EJB
     RegionManager regionManager;
 
+    Calculator calc = new Calculator();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
 //        for(String s : new String[]{
@@ -84,14 +86,22 @@ public class ResultCalculator extends HttpServlet
 
         //Post-Graduation
         List<Car> allCars = carManager.getCars();
+        String carStat = request.getParameter("car_status");
+        String carQual = request.getParameter("car_quality");
+        String carMPG = request.getParameter("fuel_economy");
+
         Car car = new Car();
         for(int i=0;i<allCars.size();i++)
         {
-            if(allCars.get(i).getStatus().equals(request.getParameter("car_status")) &&
-               allCars.get(i).getQuality().equals(request.getParameter("car_quality")) &&
-               allCars.get(i).getMpg().equals(request.getParameter("fuel_economy")))
+            if(allCars.get(i).getStatus().equals(carStat) &&
+               allCars.get(i).getQuality().equals(carQual) &&
+               allCars.get(i).getMpg().equals(carMPG))
             {
-                car = allCars.get(i);
+                car.setId(allCars.get(i).getId());
+                car.setStatus(allCars.get(i).getStatus());
+                car.setQuality(allCars.get(i).getQuality());
+                car.setMpg(allCars.get(i).getMpg());
+                car.setPrice(allCars.get(i).getPrice());
             }
         }
         Double housingCost;
@@ -209,14 +219,33 @@ public class ResultCalculator extends HttpServlet
 
         discretionary = salary - (studentloan + incometax + miscexpenses + carexpenses + housingCost + miscloans);
 
-        session.setAttribute("salary", salary);
-        session.setAttribute("studentloan", studentloan);
-        session.setAttribute("incometax", incometax);
-        session.setAttribute("miscexpenses", miscexpenses);
-        session.setAttribute("carexpenses", carexpenses);
-        session.setAttribute("mortgage", housingCost);
-        session.setAttribute("miscloans", miscloans);
-        session.setAttribute("discretionary", discretionary);
+
+        Double truncSal = calc.truncate(salary);
+        Integer newSal = truncSal.intValue();
+        Double truncStudLoan = calc.truncate(studentloan);
+        Integer newStudLoan = truncStudLoan.intValue();
+        Double truncIncomeTax = calc.truncate(incometax);
+        Integer newIncomeTax = truncIncomeTax.intValue();
+        Double truncMiscEx = calc.truncate(miscexpenses);
+        Integer newMiscEx = truncMiscEx.intValue();
+        Double truncCarEx = calc.truncate(carexpenses);
+        Integer newCarEx = truncCarEx.intValue();
+        Double truncHouseCost = calc.truncate(housingCost);
+        Integer newHouseCost = truncHouseCost.intValue();
+        Double truncMiscLoans = calc.truncate(miscloans);
+        Integer newMiscLoans = truncMiscLoans.intValue();
+        Double truncDiscret = calc.truncate(discretionary);
+        Integer newDiscret = truncDiscret.intValue();
+
+
+        session.setAttribute("salary", newSal);
+        session.setAttribute("studentloan", newStudLoan);
+        session.setAttribute("incometax", newIncomeTax);
+        session.setAttribute("miscexpenses", newMiscEx);
+        session.setAttribute("carexpenses", newCarEx);
+        session.setAttribute("mortgage", newHouseCost);
+        session.setAttribute("miscloans", newMiscLoans);
+        session.setAttribute("discretionary", newDiscret);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/results.jsp");
         dispatcher.forward(request, response);

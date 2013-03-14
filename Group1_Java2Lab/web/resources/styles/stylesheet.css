@@ -91,6 +91,10 @@ nav ul li.highlight {
   	background-color: #cccccc;
 }
 
+#results {
+    position: relative;
+}
+
 
 
 

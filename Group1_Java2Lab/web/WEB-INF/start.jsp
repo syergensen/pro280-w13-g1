@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Financial Tool - Start</title>
+    <title>NUBA - Start</title>
     <link href="./resources/styles/stylesheet.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="./resources/scripts/script.js"></script>
 </head>
