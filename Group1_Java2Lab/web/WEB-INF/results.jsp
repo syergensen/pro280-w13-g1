@@ -13,6 +13,12 @@
                 max-width: 100%;
             }
         </style>
+
+        <script type="text/javascript" >
+            function printResultsPage() {
+                window.print();
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="header/header.jsp"/>
@@ -34,9 +40,8 @@
                         <h3>Misc. Loans................${miscloans}/month</h3>
                         <br>
                         <h3>Discretionary Income: ${discretionary}/month</h3>
-                        <%--<form action="print" method="get">--%>
-                            <%--<input id="printButton" type="submit" name="printform" value="Print Results">--%>
-                        <%--</form>--%>
+
+                        <input id="printButton" type="submit" name="printform" value="Print Results" onclick="printResultsPage()">
                     </div>
                 </div>
             </div>
